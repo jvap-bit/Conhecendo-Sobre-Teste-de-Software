@@ -207,7 +207,7 @@ function exibirResultado(pontosObtidos, total) {
             ${gabaritoHTML}
         </div>
 
-        <button class="botao-quiz" onclick="iniciarQuiz()">Tentar Novamente</button>
+        <button class="botao-quiz" onclick="iniciarQuiz()">$ tentar_novamente()</button>
     `;
 
     resultadoContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });

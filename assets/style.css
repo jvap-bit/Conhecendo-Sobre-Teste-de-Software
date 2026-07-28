@@ -1,18 +1,23 @@
 /* ==========================================================================
-   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS (HI-TECH DARK BLUE)
+   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS (HI-TECH DARK BLUE / TERMINAL)
    ========================================================================== */
 :root {
   /* Paleta High-Tech Dark Blue */
-  --bg-deep: #030812;          /* Azul quase preto profundo */
-  --bg-surface: #071326;       /* Azul marinho fechado */
-  --panel-bg: rgba(10, 25, 47, 0.65); /* Painel translúcido */
-  
+  --bg-deep: #030812;
+  --bg-surface: #071326;
+  --panel-bg: rgba(10, 25, 47, 0.65);
+
   /* Accent & Neon Colors */
-  --cyan-neon: #00f0ff;        /* Ciano brilhante high-tech */
-  --blue-electric: #0077ff;    /* Azul elétrico vibrante */
-  --blue-accent: #1e3a8a;      /* Azul de contraste */
-  --purple-glow: #7000ff;      /* Roxo futurista para detalhes */
-  
+  --cyan-neon: #00f0ff;
+  --blue-electric: #0077ff;
+  --blue-accent: #1e3a8a;
+  --purple-glow: #7000ff;
+
+  /* Terminal / test-runner accents */
+  --pass-green: #33ffb5;
+  --fail-red: #ff4d6d;
+  --warn-amber: #ffb84d;
+
   /* Textos & Neutros */
   --white: #ffffff;
   --gray-light: #cbd5e1;
@@ -21,7 +26,8 @@
   /* Auxiliares de Design & Transições */
   --glass-border: rgba(0, 240, 255, 0.18);
   --glass-border-hover: rgba(0, 240, 255, 0.5);
-  --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -41,8 +47,7 @@ body {
   color: var(--white);
   line-height: 1.6;
   background-color: var(--bg-deep);
-  /* Fundo tecnológico com malha sutil de degradê */
-  background-image: 
+  background-image:
     radial-gradient(circle at 20% 20%, rgba(0, 119, 255, 0.15) 0%, transparent 40%),
     radial-gradient(circle at 80% 80%, rgba(112, 0, 255, 0.12) 0%, transparent 40%),
     linear-gradient(180deg, var(--bg-deep) 0%, #050d1a 100%);
@@ -51,7 +56,7 @@ body {
 }
 
 /* ==========================================================================
-   2. CABEÇALHO E NAVEGAÇÃO HIGH-TECH
+   2. CABEÇALHO E NAVEGAÇÃO
    ========================================================================== */
 header {
   position: fixed;
@@ -69,6 +74,24 @@ header {
   max-width: 1300px;
   margin: 0 auto;
   padding: 0.85rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  color: var(--white);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logo span {
+  color: var(--cyan-neon);
 }
 
 .menu {
@@ -113,26 +136,40 @@ header {
   width: 100%;
 }
 
+.itens-menu a.menu-cta {
+  color: var(--bg-deep);
+  background: linear-gradient(90deg, var(--cyan-neon), var(--blue-electric));
+  padding: 0.45rem 0.9rem;
+  border-radius: 50px;
+}
+
+.itens-menu a.menu-cta:hover {
+  text-shadow: none;
+}
+
+.itens-menu a.menu-cta::after {
+  display: none;
+}
+
 /* ==========================================================================
-   3. CONTEÚDO PRINCIPAL & SEÇÕES RECOMPACTADAS
+   3. CONTEÚDO PRINCIPAL & PAINÉIS
    ========================================================================== */
 .principal {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 5rem 1.5rem 2rem 1.5rem; /* Padding top compensa o menu fixo */
+  padding: 6.5rem 1.5rem 2rem 1.5rem;
 }
 
-/* As seções agora se adaptam ao tamanho do conteúdo */
 main section {
-  scroll-margin-top: 80px; /* Evita que o topo da seção fique coberto pelo menu */
-  
+  scroll-margin-top: 80px;
+
   background: var(--panel-bg);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 2rem 2.5rem;
   margin: 1.5rem 0;
-  
+
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5),
@@ -147,22 +184,216 @@ main section:hover {
               inset 0 1px 0 rgba(0, 240, 255, 0.3);
 }
 
-/* ==========================================================================
-   4. TIPOGRAFIA & LISTAS HI-TECH
-   ========================================================================== */
-.titulo-principal {
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-  background: linear-gradient(135deg, #ffffff 0%, var(--cyan-neon) 60%, var(--blue-electric) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: -1px;
-  drop-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--cyan-neon);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
 }
 
+.grupo-titulo {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--gray-light);
+  margin: 1.75rem 0 1rem 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   4. HERO
+   ========================================================================== */
+.hero {
+  padding: 3rem 2.5rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.titulo-principal {
+  font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+  font-weight: 800;
+  text-align: left;
+  margin-bottom: 1.25rem;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #ffffff 0%, var(--cyan-neon) 65%, var(--blue-electric) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-lead {
+  font-size: 1.1rem;
+  max-width: 46ch;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.75rem;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  padding: 0.9rem 1.75rem;
+  border-radius: 50px;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  color: var(--bg-deep);
+  background: linear-gradient(90deg, var(--cyan-neon), var(--blue-electric));
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
+}
+
+.btn-secondary {
+  color: var(--gray-light);
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.btn-secondary:hover {
+  color: var(--white);
+  border-color: var(--cyan-neon);
+  background: rgba(0, 240, 255, 0.06);
+}
+
+/* Terminal mockup */
+.terminal {
+  background: #01050c;
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 240, 255, 0.08);
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  background: #050b17;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.terminal-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red { background: var(--fail-red); }
+.dot-yellow { background: var(--warn-amber); }
+.dot-green { background: var(--pass-green); }
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--gray-muted);
+  margin-left: 0.5rem;
+}
+
+.terminal-body {
+  padding: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.term-line {
+  margin-bottom: 0.75rem;
+  white-space: pre-wrap;
+}
+
+.term-cmd { color: var(--gray-light); }
+.term-pass { color: var(--pass-green); }
+.term-fail { color: var(--fail-red); }
+.term-note { color: var(--warn-amber); font-size: 0.85rem; }
+.term-summary { color: var(--white); font-weight: 600; margin-top: 1rem; }
+.term-time { color: var(--gray-muted); font-size: 0.8rem; }
+
+.term-cursor {
+  display: inline-block;
+  margin-left: 4px;
+  animation: blink 1s step-end infinite;
+  color: var(--cyan-neon);
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* ==========================================================================
+   5. STATS STRIP
+   ========================================================================== */
+main section.stats-strip {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0.5rem 0;
+}
+
+main section.stats-strip:hover {
+  border: none;
+  box-shadow: none;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.stat-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: left;
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-3px);
+}
+
+.stat-number {
+  font-family: var(--font-mono);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--cyan-neon);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 16px rgba(0, 240, 255, 0.35);
+}
+
+.stat-label {
+  color: var(--gray-light);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   6. TIPOGRAFIA GERAL & LISTAS
+   ========================================================================== */
 .subtitulo-principal {
   font-size: clamp(1.4rem, 2.5vw, 1.9rem);
   font-weight: 700;
@@ -183,14 +414,6 @@ main section:hover {
   box-shadow: 0 0 12px var(--cyan-neon);
 }
 
-main section h3 {
-  font-size: 1.25rem;
-  color: var(--cyan-neon);
-  margin: 1.5rem 0 0.85rem 0;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
 .paragrafo-principal {
   color: var(--gray-light);
   font-size: 1.05rem;
@@ -202,7 +425,6 @@ main section h3 {
   margin-bottom: 0;
 }
 
-/* Estilização da lista com marcadores neon */
 .lista-detalhes {
   list-style: none;
   margin: 1rem 0;
@@ -234,7 +456,233 @@ main section h3 {
 }
 
 /* ==========================================================================
-   5. QUIZ INTERATIVO
+   7. FLUXO ERRO → DEFEITO → FALHA
+   ========================================================================== */
+.flow {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.flow-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+
+.flow-card:hover {
+  border-color: var(--cyan-neon);
+  background: rgba(0, 240, 255, 0.04);
+}
+
+.flow-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gray-muted);
+  margin-bottom: 0.5rem;
+}
+
+.flow-card h3 {
+  font-size: 1.15rem;
+  color: var(--cyan-neon);
+  margin-bottom: 0.6rem;
+}
+
+.flow-card p {
+  color: var(--gray-light);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.flow-arrow {
+  align-self: center;
+  color: var(--gray-muted);
+  font-size: 1.5rem;
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   8. CARD GRID (importância, categorias)
+   ========================================================================== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-left: 3px solid var(--cyan-neon);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  transition: var(--transition);
+}
+
+.info-card:hover {
+  background: rgba(0, 240, 255, 0.04);
+  transform: translateX(4px);
+}
+
+.info-card h3 {
+  color: var(--white);
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.info-card p {
+  color: var(--gray-light);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   9. STEPS (níveis de teste)
+   ========================================================================== */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.step {
+  position: relative;
+  padding: 1.25rem 1rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  transition: var(--transition);
+}
+
+.step:hover {
+  border-color: var(--glass-border-hover);
+}
+
+.step-index {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--blue-electric);
+  text-shadow: 0 0 10px rgba(0, 119, 255, 0.6);
+  margin-bottom: 0.5rem;
+}
+
+.step h4 {
+  color: var(--white);
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.step p {
+  color: var(--gray-light);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* connecting line between steps on wide screens */
+.steps {
+  position: relative;
+}
+
+/* ==========================================================================
+   10. INCIDENT LOG (casos reais)
+   ========================================================================== */
+.incident-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.incident {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 77, 109, 0.04);
+  border: 1px solid var(--glass-border);
+  border-left: 3px solid var(--fail-red);
+  border-radius: 12px;
+  transition: var(--transition);
+}
+
+.incident:hover {
+  border-color: var(--fail-red);
+  background: rgba(255, 77, 109, 0.08);
+}
+
+.incident-year {
+  font-family: var(--font-mono);
+  color: var(--fail-red);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.incident h3 {
+  color: var(--white);
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.incident p {
+  color: var(--gray-light);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   11. FERRAMENTAS (chips)
+   ========================================================================== */
+.tool-groups {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.tool-group h3 {
+  font-size: 0.95rem;
+  color: var(--cyan-neon);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+}
+
+.chip-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--gray-light);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  transition: var(--transition);
+}
+
+.chip:hover {
+  color: var(--white);
+  border-color: var(--cyan-neon);
+  background: rgba(0, 240, 255, 0.06);
+}
+
+/* ==========================================================================
+   12. QUIZ INTERATIVO
    ========================================================================== */
 .quiz {
   text-align: center;
@@ -243,10 +691,10 @@ main section h3 {
 .botao-quiz {
   margin-top: 1rem;
   padding: 1rem 2.5rem;
+  font-family: var(--font-mono);
   font-size: 1rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   color: var(--bg-deep);
   background: linear-gradient(90deg, var(--cyan-neon), var(--blue-electric));
   border: none;
@@ -262,7 +710,7 @@ main section h3 {
   background: linear-gradient(90deg, #ffffff, var(--cyan-neon));
 }
 
-.quiz-container, 
+.quiz-container,
 .resultado-container {
   margin-top: 1.5rem;
   text-align: left;
@@ -348,7 +796,7 @@ main section h3 {
 }
 
 /* ==========================================================================
-   6. RODAPÉ (FOOTER)
+   13. RODAPÉ
    ========================================================================== */
 footer {
   text-align: center;
@@ -358,43 +806,86 @@ footer {
 }
 
 .paragrafo-rodape {
+  font-family: var(--font-mono);
   color: var(--gray-muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 /* ==========================================================================
-   7. ANIMAÇÕES DE ENTRADA / REVELAÇÃO (FADE-IN & SLIDE-UP)
+   14. ANIMAÇÕES DE ENTRADA / REVELAÇÃO
    ========================================================================== */
-section, 
-.lista-detalhes li, 
+section,
+.lista-detalhes li,
 .pergunta {
   opacity: 0;
   transform: translateY(25px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-section.visivel, 
-.lista-detalhes li.visivel, 
+section.visivel,
+.lista-detalhes li.visivel,
 .pergunta.visivel {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Escalonamento de entrada das listas */
 .lista-detalhes li:nth-child(1) { transition-delay: 0.1s; }
 .lista-detalhes li:nth-child(2) { transition-delay: 0.15s; }
 .lista-detalhes li:nth-child(3) { transition-delay: 0.2s; }
 .lista-detalhes li:nth-child(4) { transition-delay: 0.25s; }
 
 /* ==========================================================================
-   8. RESPONSIVIDADE
+   15. RESPONSIVIDADE
    ========================================================================== */
 @media (max-width: 900px) {
   main section {
     padding: 1.5rem 1.25rem;
     margin: 1rem 0;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .titulo-principal {
+    text-align: center;
+  }
+
+  .hero-lead {
+    max-width: none;
+    text-align: center;
+  }
+
+  .hero-ctas {
+    justify-content: center;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-grid,
+  .tool-groups {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .flow {
+    flex-direction: column;
+  }
+
+  .flow-arrow {
+    transform: rotate(90deg);
+  }
+
+  .incident {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
   }
 
   .menu {
@@ -403,5 +894,15 @@ section.visivel,
 
   .itens-menu a {
     font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
   }
 }
