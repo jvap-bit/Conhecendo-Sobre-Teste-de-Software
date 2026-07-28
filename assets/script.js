@@ -552,3 +552,72 @@ function filtrarGlossario() {
 document.addEventListener("DOMContentLoaded", () => {
     carregarGlossario();
 });
+
+
+let tamanhoFonteAtual = 100; 
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btnEngrenagem = document.getElementById("btnAcessibilidade");
+    const painel = document.getElementById("painelAcessibilidade");
+
+    if (btnEngrenagem && painel) {
+        btnEngrenagem.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const estaAtivo = painel.classList.toggle("ativo");
+            painel.setAttribute("aria-hidden", !estaAtivo);
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!painel.contains(e.target) && e.target !== btnEngrenagem) {
+                painel.classList.remove("ativo");
+                painel.setAttribute("aria-hidden", "true");
+            }
+        });
+    }
+
+
+    restaurarPreferenciasAcessibilidade();
+});
+
+function alterarTamanhoFonte(acao) {
+    if (acao === 'aumentar' && tamanhoFonteAtual < 140) {
+        tamanhoFonteAtual += 10;
+    } else if (acao === 'diminuir' && tamanhoFonteAtual > 80) {
+        tamanhoFonteAtual -= 10;
+    } else if (acao === 'reset') {
+        tamanhoFonteAtual = 100;
+    }
+
+    document.documentElement.style.fontSize = `${tamanhoFonteAtual}%`;
+    localStorage.setItem("acessibilidade_fonte", tamanhoFonteAtual);
+}
+
+function aplicarModoDaltonismo(modo) {
+    const html = document.documentElement;
+
+
+    html.classList.remove("modo-protanopia", "modo-deuteranopia", "modo-tritanopia", "modo-alto-contraste");
+
+    if (modo !== "padrao") {
+        html.classList.add(`modo-${modo}`);
+    }
+
+    localStorage.setItem("acessibilidade_daltonismo", modo);
+}
+
+
+function restaurarPreferenciasAcessibilidade() {
+
+    const fonteSalva = localStorage.getItem("acessibilidade_fonte");
+    if (fonteSalva) {
+        tamanhoFonteAtual = parseInt(fonteSalva);
+        document.documentElement.style.fontSize = `${tamanhoFonteAtual}%`;
+    }
+
+    const modoSalvo = localStorage.getItem("acessibilidade_daltonismo");
+    if (modoSalvo) {
+        aplicarModoDaltonismo(modoSalvo);
+        const select = document.getElementById("selectDaltonismo");
+        if (select) select.value = modoSalvo;
+    }
+}

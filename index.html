@@ -10,6 +10,40 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
+<div class="acessibilidade-widget">
+    <button id="btnAcessibilidade" class="btn-acessibilidade-engrenagem" aria-label="Abrir Opções de Acessibilidade" title="Acessibilidade">
+        ⚙️
+    </button>
+
+    <div id="painelAcessibilidade" class="painel-acessibilidade" aria-hidden="true">
+        <h3>Acessibilidade</h3>
+        
+        <!-- Redimensionamento de Fonte -->
+        <div class="opcao-acessibilidade">
+            <label>Tamanho do Texto:</label>
+            <div class="botoes-fonte">
+                <button onclick="alterarTamanhoFonte('diminuir')" title="Diminuir Fonte">A-</button>
+                <button onclick="alterarTamanhoFonte('reset')" title="Tamanho Normal">A</button>
+                <button onclick="alterarTamanhoFonte('aumentar')" title="Aumentar Fonte">A+</button>
+            </div>
+        </div>
+
+        <hr />
+
+
+        <div class="opcao-acessibilidade">
+            <label for="selectDaltonismo">Modo de Daltonismo:</label>
+            <select id="selectDaltonismo" onchange="aplicarModoDaltonismo(this.value)">
+                <option value="padrao">Padrão (Desativado)</option>
+                <option value="protanopia">Protanopia (Vermelho)</option>
+                <option value="deuteranopia">Deuteranopia (Verde)</option>
+                <option value="tritanopia">Tritanopia (Azul)</option>
+                <option value="alto-contraste">Alto Contraste</option>
+            </select>
+        </div>
+    </div>
+</div>
+
     <header class="site-header">
         <nav class="cabecalho">
             <a href="#inicio" class="logo">Check<span>Code</span></a>
