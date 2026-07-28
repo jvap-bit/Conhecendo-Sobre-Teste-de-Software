@@ -1,8 +1,5 @@
-/* ==========================================================================
-   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS (HI-TECH DARK BLUE / TERMINAL)
-   ========================================================================== */
+
 :root {
-  /* Paleta High-Tech Dark Blue */
   --bg-deep: #030812;
   --bg-surface: #071326;
   --panel-bg: rgba(10, 25, 47, 0.65);
@@ -13,17 +10,15 @@
   --blue-accent: #1e3a8a;
   --purple-glow: #7000ff;
 
-  /* Terminal / test-runner accents */
   --pass-green: #33ffb5;
   --fail-red: #ff4d6d;
   --warn-amber: #ffb84d;
 
-  /* Textos & Neutros */
   --white: #ffffff;
   --gray-light: #cbd5e1;
   --gray-muted: #64748b;
 
-  /* Auxiliares de Design & Transições */
+
   --glass-border: rgba(0, 240, 255, 0.18);
   --glass-border-hover: rgba(0, 240, 255, 0.5);
   --font-main: 'Inter', system-ui, -apple-system, sans-serif;
@@ -31,7 +26,6 @@
   --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reset Básico */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -55,9 +49,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ==========================================================================
-   2. CABEÇALHO E NAVEGAÇÃO
-   ========================================================================== */
 header {
   position: fixed;
   top: 0;
@@ -151,9 +142,6 @@ header {
   display: none;
 }
 
-/* ==========================================================================
-   3. CONTEÚDO PRINCIPAL & PAINÉIS
-   ========================================================================== */
 .principal {
   width: 100%;
   max-width: 1100px;
@@ -201,9 +189,6 @@ main section:hover {
   letter-spacing: 1px;
 }
 
-/* ==========================================================================
-   4. HERO
-   ========================================================================== */
 .hero {
   padding: 3rem 2.5rem;
 }
@@ -273,7 +258,7 @@ main section:hover {
   background: rgba(0, 240, 255, 0.06);
 }
 
-/* Terminal mockup */
+
 .terminal {
   background: #01050c;
   border: 1px solid var(--glass-border);
@@ -339,9 +324,7 @@ main section:hover {
   50%, 100% { opacity: 0; }
 }
 
-/* ==========================================================================
-   5. STATS STRIP
-   ========================================================================== */
+
 main section.stats-strip {
   background: transparent;
   border: none;
@@ -391,9 +374,7 @@ main section.stats-strip:hover {
   line-height: 1.5;
 }
 
-/* ==========================================================================
-   6. TIPOGRAFIA GERAL & LISTAS
-   ========================================================================== */
+
 .subtitulo-principal {
   font-size: clamp(1.4rem, 2.5vw, 1.9rem);
   font-weight: 700;
@@ -455,9 +436,6 @@ main section.stats-strip:hover {
   color: var(--white);
 }
 
-/* ==========================================================================
-   7. FLUXO ERRO → DEFEITO → FALHA
-   ========================================================================== */
 .flow {
   display: flex;
   align-items: stretch;
@@ -507,9 +485,6 @@ main section.stats-strip:hover {
   font-family: var(--font-mono);
 }
 
-/* ==========================================================================
-   8. CARD GRID (importância, categorias)
-   ========================================================================== */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -543,9 +518,6 @@ main section.stats-strip:hover {
   line-height: 1.55;
 }
 
-/* ==========================================================================
-   9. STEPS (níveis de teste)
-   ========================================================================== */
 .steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -587,14 +559,11 @@ main section.stats-strip:hover {
   line-height: 1.5;
 }
 
-/* connecting line between steps on wide screens */
 .steps {
   position: relative;
 }
 
-/* ==========================================================================
-   10. INCIDENT LOG (casos reais)
-   ========================================================================== */
+
 .incident-list {
   display: flex;
   flex-direction: column;
@@ -639,9 +608,6 @@ main section.stats-strip:hover {
   line-height: 1.55;
 }
 
-/* ==========================================================================
-   11. FERRAMENTAS (chips)
-   ========================================================================== */
 .tool-groups {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -681,9 +647,6 @@ main section.stats-strip:hover {
   background: rgba(0, 240, 255, 0.06);
 }
 
-/* ==========================================================================
-   12. QUIZ INTERATIVO
-   ========================================================================== */
 .quiz {
   text-align: center;
 }
@@ -795,9 +758,6 @@ main section.stats-strip:hover {
   font-size: 1.25rem;
 }
 
-/* ==========================================================================
-   13. RODAPÉ
-   ========================================================================== */
 footer {
   text-align: center;
   padding: 2rem 1rem;
@@ -811,9 +771,7 @@ footer {
   font-size: 0.85rem;
 }
 
-/* ==========================================================================
-   14. ANIMAÇÕES DE ENTRADA / REVELAÇÃO
-   ========================================================================== */
+
 section,
 .lista-detalhes li,
 .pergunta {
@@ -836,9 +794,7 @@ section.visivel,
 .lista-detalhes li:nth-child(3) { transition-delay: 0.2s; }
 .lista-detalhes li:nth-child(4) { transition-delay: 0.25s; }
 
-/* ==========================================================================
-   15. RESPONSIVIDADE
-   ========================================================================== */
+
 @media (max-width: 900px) {
   main section {
     padding: 1.5rem 1.25rem;
