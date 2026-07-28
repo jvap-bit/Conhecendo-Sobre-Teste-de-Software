@@ -1,4 +1,3 @@
-// 1. Array expandido com 10 perguntas baseadas no conteúdo da página
 const quiz = [
     {
         pergunta: "Qual é o principal objetivo do teste de software?",
@@ -102,7 +101,6 @@ const quiz = [
     }
 ];
 
-// 2. Função para iniciar o quiz e renderizar as perguntas
 function iniciarQuiz() {
     const quizContainer = document.getElementById('quiz-container');
     const resultadoContainer = document.getElementById('resultado-container');
@@ -133,7 +131,6 @@ function iniciarQuiz() {
         quizContainer.appendChild(perguntaDiv);
     });
 
-    // Adiciona o botão de enviar ao final do quiz
     const botaoEnviar = document.createElement('button');
     botaoEnviar.innerText = 'Enviar Respostas';
     botaoEnviar.classList.add('botao-quiz');
@@ -141,7 +138,6 @@ function iniciarQuiz() {
     quizContainer.appendChild(botaoEnviar);
 }
 
-// 3. Função para validar as respostas e mostrar o resultado
 function calcularResultado() {
     let pontos = 0;
     let todasRespondidas = true;
@@ -164,7 +160,6 @@ function calcularResultado() {
     exibirResultado(pontos, quiz.length);
 }
 
-// 4. Exibe a pontuação final na tela
 function exibirResultado(pontos, total) {
     const quizContainer = document.getElementById('quiz-container');
     const resultadoContainer = document.getElementById('resultado-container');
