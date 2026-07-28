@@ -28,7 +28,9 @@
                 <li class="itens-menu"><a href="#tipos">Tipos</a></li>
                 <li class="itens-menu"><a href="#falhas">Casos Reais</a></li>
                 <li class="itens-menu"><a href="#ferramentas">Ferramentas</a></li>
-                <li class="itens-menu"><a href="#quiz" class="menu-cta">Quiz</a></li>
+                <li class="itens-menu"><a href="#glossario-qa">Glossário</a></li>
+                <li class="itens-menu"><a href="#quiz">Quiz</a></li>
+                <li class="itens-menu"><a href="#caca-palavras" class="menu-cta">Caça Palavras</a></li>
             </ul>
 
             <label class="theme-switch" title="Alternar tema claro/escuro">
@@ -268,37 +270,6 @@
             </div>
         </section>
 
-        <section id="quiz" class="quiz">
-            <p class="eyebrow">// prova real</p>
-            <h2 class="subtitulo-principal">Quiz sobre o conteúdo apresentado</h2>
-            <p class="paragrafo-principal">Teste seus conhecimentos sobre o universo do teste de software com o nosso quiz de 10 perguntas! Clique no botão abaixo para começar.</p>
-
-            <button class="botao-quiz" onclick="iniciarQuiz()">$ iniciar_quiz()</button>
-
-            <div id="quiz-container" class="quiz-container" style="display: none;"></div>
-            <div id="resultado-container" class="resultado-container" style="display: none;"></div>
-        </section>
-
-        <section id="caca-palavras" class="caca-palavras-section">
-            <p class="eyebrow">// desafio interativo</p>
-            <h2 class="subtitulo-principal">Caça-Palavras de QA</h2>
-            <p class="paragrafo-principal">Encontre os 10 termos fundamentais sobre Teste de Software escondidos na grade!</p>
-
-            <div class="caca-palavras-container">
-                <div class="palavras-lista">
-                    <h3>Palavras para encontrar:</h3>
-                    <ul id="lista-palavras"></ul>
-
-                    <button class="botao-quiz" onclick="reembaralharCacaPalavras()" style="margin-top: 15px; width: 100%;">
-                        $ reembaralhar_grid()
-                    </button>
-                </div>
-
-                <div class="grade-wrapper">
-                    <div id="grid-caca-palavras" class="grid-caca-palavras"></div>
-                </div>
-            </div>
-        </section>
         <section id="glossario-qa" class="secao-glossario">
     <div class="container">
         <h2>Glossário de QA & Testes</h2>
@@ -322,6 +293,39 @@
         </div>
     </div>
 </section>
+
+        <section id="quiz" class="quiz">
+            <p class="eyebrow">// prova real</p>
+            <h2 class="subtitulo-principal">Quiz sobre o conteúdo apresentado</h2>
+            <p class="paragrafo-principal">Teste seus conhecimentos sobre o universo do teste de software com o nosso quiz de 10 perguntas! Clique no botão abaixo para começar.</p>
+
+            <button class="botao-quiz" onclick="iniciarQuiz()">$ iniciar_quiz()</button>
+
+            <div id="quiz-container" class="quiz-container" style="display: none;"></div>
+            <div id="resultado-container" class="resultado-container" style="display: none;"></div>
+        </section>
+
+                <section id="caca-palavras" class="caca-palavras-section">
+            <p class="eyebrow">// desafio interativo</p>
+            <h2 class="subtitulo-principal">Caça-Palavras de QA</h2>
+            <p class="paragrafo-principal">Encontre os 10 termos fundamentais sobre Teste de Software escondidos na grade!</p>
+
+            <div class="caca-palavras-container">
+                <div class="palavras-lista">
+                    <h3>Palavras para encontrar:</h3>
+                    <ul id="lista-palavras"></ul>
+
+                    <button class="botao-quiz" onclick="reembaralharCacaPalavras()" style="margin-top: 15px; width: 100%;">
+                        $ reembaralhar_grid()
+                    </button>
+                </div>
+
+                <div class="grade-wrapper">
+                    <div id="grid-caca-palavras" class="grid-caca-palavras"></div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <div vw class="enabled">
