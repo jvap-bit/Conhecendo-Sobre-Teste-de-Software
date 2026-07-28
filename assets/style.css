@@ -1355,3 +1355,184 @@ img, iframe {
         text-align: center;
     }
 }
+
+/* ==========================================
+   GLOSSÁRIO / DICIONÁRIO DE QA
+   ========================================== */
+.secao-glossario {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.subtitulo-secao {
+    opacity: 0.85;
+    margin-bottom: 30px;
+}
+
+/* Container da busca */
+.busca-container {
+    max-width: 600px;
+    margin: 0 auto 35px auto;
+}
+
+.busca-container input {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 2px solid var(--cor-borda, #333);
+    background-color: var(--cor-fundo-input, #1e1e1e);
+    color: var(--cor-texto, #fff);
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.busca-container input:focus {
+    border-color: #2ed573;
+    box-shadow: 0 0 10px rgba(46, 213, 115, 0.3);
+}
+
+/* Grid de cards */
+.grid-glossario {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+/* Card individual */
+.card-termo {
+    background-color: var(--cor-card, #1a1a1a);
+    border: 1px solid var(--cor-borda, #2a2a2a);
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-termo:hover {
+    transform: translateY(-4px);
+    border-color: #2ed573;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-header-termo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.card-termo h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #2ed573;
+}
+
+.badge-categoria {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background-color: rgba(46, 213, 115, 0.15);
+    color: #2ed573;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.card-termo p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.mensagem-vazia {
+    margin-top: 30px;
+    opacity: 0.7;
+}
+
+[data-theme="light"] .secao-glossario {
+    color: #222222;
+}
+
+[data-theme="light"] .busca-container input {
+    background-color: #ffffff;
+    color: #222222;
+    border-color: #cccccc;
+}
+
+[data-theme="light"] .busca-container input::placeholder {
+    color: #777777;
+}
+
+[data-theme="light"] .card-termo {
+    background-color: #ffffff;
+    border-color: #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .card-termo:hover {
+    border-color: #2ed573;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .card-termo h3 {
+    color: #0fb9b1; 
+
+[data-theme="light"] .badge-categoria {
+    background-color: rgba(15, 185, 177, 0.15);
+    color: #0fb9b1;
+}
+
+[data-theme="light"] .card-termo p {
+    color: #444444;
+}
+
+@media (max-width: 768px) {
+    .secao-glossario {
+        padding: 40px 15px;
+    }
+
+    .busca-container {
+        margin-bottom: 25px;
+    }
+
+    .busca-container input {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+
+    .grid-glossario {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 15px;
+    }
+
+    .card-termo {
+        padding: 16px;
+    }
+
+    .card-termo h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-glossario {
+        grid-template-columns: 1fr;
+    }
+
+    .card-header-termo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .badge-categoria {
+        align-self: flex-start;
+    }
+}
+}

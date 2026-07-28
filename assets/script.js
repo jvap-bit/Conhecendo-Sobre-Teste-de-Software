@@ -442,3 +442,113 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 })();
+
+const baseGlossario = [
+    {
+        termo: "Flaky Test",
+        categoria: "Automação",
+        def: "Um teste automatizado que apresenta resultados inconsistentes (passa ou falha) sem que haja alterações no código-fonte do sistema."
+    },
+    {
+        termo: "Smoke Test",
+        categoria: "Estratégia",
+        def: "Teste rápido das funcionalidades mais críticas para validar se o ambiente de build está estável o suficiente para testes mais aprofundados."
+    },
+    {
+        termo: "Sanity Testing",
+        categoria: "Estratégia",
+        def: "Execução focada para verificar se uma alteração pontual no código ou correção de bug não quebrou a funcionalidade direta afetada."
+    },
+    {
+        termo: "Shift-Left",
+        categoria: "Cultura",
+        def: "Prática de mover as atividades de teste e qualidade para o início do ciclo de desenvolvimento de software (fase de requisitos/design)."
+    },
+    {
+        termo: "TDD vs BDD",
+        categoria: "Metodologia",
+        def: "TDD (Test-Driven Development) foca no desenvolvimento guiado por testes unitários técnicos. BDD (Behavior-Driven Development) foca no comportamento do sistema sob a perspectiva do negócio (ex: Gherkin)."
+    },
+    {
+        termo: "Mocks vs Stubs",
+        categoria: "Automação",
+        def: "Stubs fornecem respostas prontas e fixas para chamadas feitas durante o teste. Mocks são objetos simulados que também verificam se determinadas chamadas e métodos foram executados."
+    },
+    {
+        termo: "Regression (Teste de Regressão)",
+        categoria: "Estratégia",
+        def: "Reexecução de testes em funcionalidades já existentes para garantir que novas alterações de código ou correções não introduziram novos defeitos."
+    },
+    {
+        termo: "Bug vs Defeito vs Falha",
+        categoria: "Conceitos",
+        def: "Um erro humano gera um Defeito no código (Bug). Quando esse defeito é executado pelo usuário, ele se manifesta como uma Falha no sistema."
+    },
+    {
+        termo: "Assertion (Asserção)",
+        categoria: "Automação",
+        def: "Verificação lógica no código de teste que compara o resultado obtido pelo sistema com o resultado esperado. Se forem diferentes, o teste falha."
+    },
+    {
+        termo: "Monkey Testing",
+        categoria: "Exploratório",
+        def: "Técnica de teste aleatório onde o usuário/script fornece dados ou cliques imprevisíveis sem um roteiro pré-definido para tentar quebrar a aplicação."
+    },
+    {
+        termo: "Code Coverage (Cobertura)",
+        categoria: "Métricas",
+        def: "Métrica que indica a percentagem do código-fonte de um sistema que é executada durante a bateria de testes automatizados."
+    },
+    {
+        termo: "Test Debt (Dívida de Testes)",
+        categoria: "Gestão",
+        def: "Acúmulo de testes não escritos, desatualizados ou ignorados que aumenta o risco de bugs em entregas futuras."
+    }
+];
+
+function carregarGlossario(termos = baseGlossario) {
+    const grid = document.getElementById('gridGlossario');
+    const msgVazia = document.getElementById('semResultadosGlossario');
+
+    if (!grid) return;
+
+    grid.innerHTML = '';
+
+    if (termos.length === 0) {
+        if (msgVazia) msgVazia.style.display = 'block';
+        return;
+    }
+
+    if (msgVazia) msgVazia.style.display = 'none';
+
+    termos.forEach(item => {
+        const card = document.createElement('div');
+        card.classList.add('card-termo');
+        card.innerHTML = `
+            <div class="card-header-termo">
+                <h3>${item.termo}</h3>
+                <span class="badge-categoria">${item.categoria}</span>
+            </div>
+            <p>${item.def}</p>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+function filtrarGlossario() {
+    const input = document.getElementById('inputBuscaGlossario');
+    if (!input) return;
+
+    const termoBusca = input.value.toLowerCase().trim();
+
+    const resultados = baseGlossario.filter(item => 
+        item.termo.toLowerCase().includes(termoBusca) ||
+        item.def.toLowerCase().includes(termoBusca) ||
+        item.categoria.toLowerCase().includes(termoBusca)
+    );
+
+    carregarGlossario(resultados);
+}
+document.addEventListener("DOMContentLoaded", () => {
+    carregarGlossario();
+});

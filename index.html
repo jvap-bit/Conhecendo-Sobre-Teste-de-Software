@@ -299,6 +299,29 @@
                 </div>
             </div>
         </section>
+        <section id="glossario-qa" class="secao-glossario">
+    <div class="container">
+        <h2>Glossário de QA & Testes</h2>
+        <p class="subtitulo-secao">Consulte rapidamente os principais termos, conceitos e siglas do universo de Qualidade de Software.</p>
+
+        <!-- Barra de Busca -->
+        <div class="busca-container">
+            <input 
+                type="text" 
+                id="inputBuscaGlossario" 
+                placeholder="Busque por um termo (ex: Flaky, Smoke, BDD)..." 
+                oninput="filtrarGlossario()"
+            />
+        </div>
+
+        <div id="gridGlossario" class="grid-glossario">
+        </div>
+
+        <div id="semResultadosGlossario" class="mensagem-vazia" style="display: none;">
+            <p>Nenhum termo encontrado com essa busca. Tente pesquisar por palavras como <em>"Test"</em>, <em>"Bug"</em> ou <em>"Agile"</em>.</p>
+        </div>
+    </div>
+</section>
     </main>
 
     <div vw class="enabled">
