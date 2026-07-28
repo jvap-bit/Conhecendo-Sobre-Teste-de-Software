@@ -251,9 +251,6 @@ function carregarVLibras() {
     }
 }
 
-// ==========================================
-// CAÇA-PALAVRAS INTERATIVO (QA & TESTES)
-// ==========================================
 
 const palavrasCaca = [
     "SOFTWARE",
@@ -385,3 +382,26 @@ function verificarPalavraFormada() {
 document.addEventListener("DOMContentLoaded", () => {
     criarCacaPalavras();
 });
+
+(function () {
+    const root = document.documentElement;
+    const switchInput = document.getElementById('themeSwitch');
+    const saved = localStorage.getItem('qa-lab-theme');
+
+    if (saved === 'light') {
+        root.setAttribute('data-theme', 'light');
+        if (switchInput) switchInput.checked = true;
+    }
+
+    if (switchInput) {
+        switchInput.addEventListener('change', () => {
+            if (switchInput.checked) {
+                root.setAttribute('data-theme', 'light');
+                localStorage.setItem('qa-lab-theme', 'light');
+            } else {
+                root.removeAttribute('data-theme');
+                localStorage.setItem('qa-lab-theme', 'dark');
+            }
+        });
+    }
+})();
