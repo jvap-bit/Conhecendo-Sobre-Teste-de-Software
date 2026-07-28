@@ -10,44 +10,102 @@
     <header>
         <nav class="cabecalho">
             <ul class="menu">
-                <li class="itens-menu"><a href="#o-que-e">O que é teste de software?</a></li>
-                <li class="itens-menu"><a href="#importancia">Qual a importância de testar?</a></li>
-                <li class="itens-menu"><a href="#falhas">Exemplos de falhas</a></li>
-                <li class="itens-menu"><a href="#tipos">Tipos de teste</a></li>
+                <li class="itens-menu"><a href="#o-que-e">O que é?</a></li>
+                <li class="itens-menu"><a href="#conceitos">Conceitos Chave</a></li>
+                <li class="itens-menu"><a href="#importancia">Importância</a></li>
+                <li class="itens-menu"><a href="#tipos">Tipos de Teste</a></li>
+                <li class="itens-menu"><a href="#falhas">Casos Reais</a></li>
+                <li class="itens-menu"><a href="#ferramentas">Ferramentas</a></li>
                 <li class="itens-menu"><a href="#quiz">Quiz</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="principal">
+        <!-- Hero Section -->
         <section class="secao-principal">
             <h1 class="titulo-principal">Conhecendo sobre Teste de Software</h1>
-            <p class="paragrafo-principal">O teste de software é uma etapa fundamental no desenvolvimento de sistemas, garantindo que o produto final atenda aos requisitos e funcione corretamente. Ele envolve a execução de um programa ou aplicativo com a intenção de identificar erros, falhas ou comportamentos inesperados.</p>
+            <p class="paragrafo-principal">O teste de software é uma etapa fundamental na engenharia e no desenvolvimento de sistemas, garantindo que o produto final atenda aos requisitos de negócio, ofereça boa experiência ao usuário e funcione com segurança e estabilidade. Ele envolve a execução planejada de um programa para identificar erros, falhas ou comportamentos inesperados antes do lançamento.</p>
         </section>
 
+        <!-- O que é -->
         <section id="o-que-e" class="secao-principal">
             <h2 class="subtitulo-principal">O que é teste de software?</h2>
-            <p class="paragrafo-principal">O teste de software é um processo sistemático de avaliação de um sistema ou aplicativo para identificar defeitos, falhas ou inconsistências em seu funcionamento. Ele envolve a execução de casos de teste, análise de resultados e verificação se o software atende aos requisitos especificados.</p>
+            <p class="paragrafo-principal">É um processo sistemático e contínuo de avaliação de um sistema ou aplicativo. O objetivo não é apenas "encontrar bugs", mas também validar se o software atende às expectativas dos clientes, cumpre normas regulatórias e mantém a integridade dos dados envolvidos.</p>
+            <p class="paragrafo-principal">O teste ocorre em várias fases do ciclo de vida do desenvolvimento (STLC - <i>Software Testing Life Cycle</i>), desde a análise do planejamento e dos requisitos até a execução manual ou automatizada dos scripts de teste.</p>
         </section>
 
+        <!-- Diferença entre Erro, Defeito e Falha -->
+        <section id="conceitos" class="secao-principal">
+            <h2 class="subtitulo-principal">Conceitos fundamentais: Erro vs Defeito vs Falha</h2>
+            <p class="paragrafo-principal">No contexto do Teste de Software, é muito importante distinguir três termos que frequentemente são confundidos:</p>
+            <ul class="lista-detalhes">
+                <li><strong>Erro (Engano humano):</strong> Uma ação incorreta cometida pelo desenvolvedor ou analista ao escrever o código ou especificar um requisito.</li>
+                <li><strong>Defeito (Bug):</strong> O resultado do erro no código-fonte ou documento. É a imperfeição presente no sistema.</li>
+                <li><strong>Falha:</strong> Ocorre quando o defeito é executado e o software apresenta um comportamento visivelmente incorreto para o usuário final.</li>
+            </ul>
+        </section>
+
+        <!-- Importância -->
         <section id="importancia" class="secao-principal">
             <h2 class="subtitulo-principal">Qual a importância de testar?</h2>
-            <p class="paragrafo-principal">O teste de software é importante porque ajuda a garantir que o produto final atenda aos requisitos e funcione corretamente. Ele permite identificar erros e falhas antes que o software seja implantado, evitando custos e problemas futuros.</p>
+            <p class="paragrafo-principal">Testar precocemente evita o aumento exponencial dos custos de correção. Quanto mais tarde um defeito é descoberto no ciclo de desenvolvimento, mais caro e complexo é corrigi-lo.</p>
+            <ul class="lista-detalhes">
+                <li><strong>Redução de Custos:</strong> Corrigir um bug em produção pode ser até 100 vezes mais caro do que corrigi-lo na fase de requisitos ou testes unitários.</li>
+                <li><strong>Segurança dos Dados:</strong> Garante que vulnerabilidades de segurança sejam identificadas antes que invasores possam explorá-las.</li>
+                <li><strong>Qualidade e Satisfação:</strong> Aumenta a confiança do usuário no produto e fortalece a reputação da marca no mercado.</li>
+                <li><strong>Conformidade:</strong> Assegura que o sistema cumpra leis e regulamentações (como a LGPD e normas ISO).</li>
+            </ul>
         </section>
 
-        <section id="falhas" class="secao-principal">
-            <h2 class="subtitulo-principal">Exemplos de sistemas que falharam em testes e não foram implantados</h2>
-            <p class="paragrafo-principal">Existem vários exemplos de sistemas que falharam em testes e não foram implantados, como o lançamento do HealthCare.gov em 2013, que enfrentou problemas significativos durante o teste, ou o sistema de pagamento do Boeing 787 Dreamliner, que teve falhas em seus testes antes da entrega.</p>
-        </section>
-
+        <!-- Tipos de Teste -->
         <section id="tipos" class="secao-principal">
-            <h2 class="subtitulo-principal">Tipos de teste de software</h2>
-            <p class="paragrafo-principal">Os tipos de teste de software incluem teste unitário, que verifica componentes individuais; teste de integração, que testa a combinação de componentes; teste funcional, que verifica se o software atende aos requisitos funcionais; e teste não funcional, que avalia aspectos como desempenho e segurança.</p>
+            <h2 class="subtitulo-principal">Tipos e Níveis de Teste de Software</h2>
+            <p class="paragrafo-principal">Os testes são divididos em várias categorias para cobrir diferentes aspectos da aplicação:</p>
+            
+            <h3>1. Níveis de Teste</h3>
+            <ul class="lista-detalhes">
+                <li><strong>Teste Unitário:</strong> Valida as menores unidades de código isoladamente (funções, métodos ou classes).</li>
+                <li><strong>Teste de Integração:</strong> Avalia a comunicação e a troca de dados entre módulos integrados.</li>
+                <li><strong>Teste de Sistema:</strong> Teste completo do produto de ponta a ponta em um ambiente similar ao de produção.</li>
+                <li><strong>Teste de Aceitação (UAT):</strong> Realizado pelo usuário final ou cliente para validar se o sistema atende às necessidades do negócio.</li>
+            </ul>
+
+            <h3>2. Categorias Principais</h3>
+            <ul class="lista-detalhes">
+                <li><strong>Testes Funcionais:</strong> Focam no "o que" o sistema faz (ex: login, fluxo de compras, cadastro).</li>
+                <li><strong>Testes Não Funcionais:</strong> Focam no "como" o sistema funciona (ex: desempenho, usabilidade, acessibilidade, carga e segurança).</li>
+                <li><strong>Teste de Regressão:</strong> Garante que alterações recentes no código não quebraram funcionalidades que já estavam funcionando.</li>
+            </ul>
         </section>
 
+        <!-- Casos Reais / Falhas Históricas -->
+        <section id="falhas" class="secao-principal">
+            <h2 class="subtitulo-principal">Exemplos de sistemas que falharam devido a testes insuficientes</h2>
+            <p class="paragrafo-principal">Falhas no processo de testes já causaram prejuízos bilionários e impactaram vidas em diversos setores:</p>
+            <ul class="lista-detalhes">
+                <li><strong>HealthCare.gov (2013):</strong> O portal do governo americano caiu no dia do lançamento devido à incapacidade de suportar a alta carga de acessos simultâneos — falha grave no teste de carga/desempenho.</li>
+                <li><strong>Boeing 787 Dreamliner:</strong> Testes rigorosos identificaram falhas no software de controle de geradores elétricos que poderiam desligar o avião em pleno voo se ficasse ligado por muito tempo seguido.</li>
+                <li><strong>Foguete Ariane 5 (1996):</strong> O foguete explodiu 37 segundos após o lançamento devido a um erro de conversão de dados não testado adequadamente no código do sistema de navegação, gerando prejuízo de $370 milhões.</li>
+            </ul>
+        </section>
+
+        <!-- Ferramentas -->
+        <section id="ferramentas" class="secao-principal">
+            <h2 class="subtitulo-principal">Ferramentas populares no mercado de QA</h2>
+            <p class="paragrafo-principal">Para otimizar o trabalho da equipe de Garantia de Qualidade (QA), utilizam-se diversas ferramentas especializadas:</p>
+            <ul class="lista-detalhes">
+                <li><strong>Automação Web/Mobile:</strong> Selenium, Cypress, Playwright, Appium.</li>
+                <li><strong>Testes de API:</strong> Postman, RestAssured, Insomnia.</li>
+                <li><strong>Testes de Carga e Desempenho:</strong> JMeter, k6.</li>
+                <li><strong>Gestão e Bugs:</strong> Jira, TestRail, Azure DevOps.</li>
+            </ul>
+        </section>
+
+        <!-- Quiz Interativo -->
         <section id="quiz" class="quiz">
             <h2 class="subtitulo-principal">Quiz sobre o conteúdo apresentado</h2>
-            <p class="paragrafo-principal">Teste seus conhecimentos sobre teste de software com este quiz interativo. Responda às perguntas e veja como você se saiu!</p>
+            <p class="paragrafo-principal">Teste seus conhecimentos sobre o universo do teste de software com o nosso quiz de 10 perguntas! Clique no botão abaixo para começar.</p>
             
             <button class="botao-quiz" onclick="iniciarQuiz()">Iniciar Quiz</button>
             
@@ -55,6 +113,10 @@
             <div id="resultado-container" class="resultado-container" style="display: none;"></div>
         </section>
     </main>
+
+    <footer>
+        <p class="paragrafo-rodape">&copy; Conhecendo sobre Teste de Software - Guia Educativo de QA.</p>
+    </footer>
 
     <script src="./assets/script.js"></script>
 </body>
