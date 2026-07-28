@@ -151,7 +151,6 @@ function mostrarPergunta() {
 }
 
 function selecionarResposta(opcaoEscolhida) {
-    // Guarda a resposta do usuário
     respostasDoUsuario.push(opcaoEscolhida);
 
     if (opcaoEscolhida === quiz[perguntaAtual].respostaCorreta) {
@@ -178,7 +177,6 @@ function exibirResultado(pontosObtidos, total) {
 
     const percentual = Math.round((pontosObtidos / total) * 100);
 
-    // Monta o gabarito detalhado
     let gabaritoHTML = quiz.map((item, index) => {
         const respostaUsuario = respostasDoUsuario[index];
         const acertou = respostaUsuario === item.respostaCorreta;
@@ -216,9 +214,6 @@ function exibirResultado(pontosObtidos, total) {
     setTimeout(() => resultadoContainer.classList.add('visivel'), 50);
 }
 
-// =======================================================
-// ANIMAÇÃO DE APARECIMENTO AO ROLAR A PÁGINA (SCROLL REVEAL)
-// =======================================================
 document.addEventListener("DOMContentLoaded", () => {
     const observador = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {

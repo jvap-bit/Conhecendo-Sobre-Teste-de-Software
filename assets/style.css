@@ -1,31 +1,23 @@
-/* ==========================================================================
-   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS (HI-TECH DARK BLUE)
-   ========================================================================== */
 :root {
-  /* Paleta High-Tech Dark Blue */
-  --bg-deep: #030812;          /* Azul quase preto profundo */
-  --bg-surface: #071326;       /* Azul marinho fechado */
-  --panel-bg: rgba(10, 25, 47, 0.65); /* Painel translúcido */
+  --bg-deep: #030812;          
+  --bg-surface: #071326;       
+  --panel-bg: rgba(10, 25, 47, 0.65); 
   
-  /* Accent & Neon Colors */
-  --cyan-neon: #00f0ff;        /* Ciano brilhante high-tech */
-  --blue-electric: #0077ff;    /* Azul elétrico vibrante */
-  --blue-accent: #1e3a8a;      /* Azul de contraste */
-  --purple-glow: #7000ff;      /* Roxo futurista para detalhes */
+  --cyan-neon: #00f0ff;        
+  --blue-electric: #0077ff;    
+  --blue-accent: #1e3a8a;      
+  --purple-glow: #7000ff;      
   
-  /* Textos & Neutros */
   --white: #ffffff;
   --gray-light: #cbd5e1;
   --gray-muted: #64748b;
 
-  /* Auxiliares de Design & Transições */
   --glass-border: rgba(0, 240, 255, 0.18);
   --glass-border-hover: rgba(0, 240, 255, 0.5);
   --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
   --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reset Básico */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -41,7 +33,6 @@ body {
   color: var(--white);
   line-height: 1.6;
   background-color: var(--bg-deep);
-  /* Fundo tecnológico com malha sutil de degradê */
   background-image: 
     radial-gradient(circle at 20% 20%, rgba(0, 119, 255, 0.15) 0%, transparent 40%),
     radial-gradient(circle at 80% 80%, rgba(112, 0, 255, 0.12) 0%, transparent 40%),
@@ -50,9 +41,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ==========================================================================
-   2. CABEÇALHO E NAVEGAÇÃO HIGH-TECH
-   ========================================================================== */
 header {
   position: fixed;
   top: 0;
@@ -113,19 +101,15 @@ header {
   width: 100%;
 }
 
-/* ==========================================================================
-   3. CONTEÚDO PRINCIPAL & SEÇÕES RECOMPACTADAS
-   ========================================================================== */
 .principal {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 5rem 1.5rem 2rem 1.5rem; /* Padding top compensa o menu fixo */
+  padding: 5rem 1.5rem 2rem 1.5rem; 
 }
 
-/* As seções agora se adaptam ao tamanho do conteúdo */
 main section {
-  scroll-margin-top: 80px; /* Evita que o topo da seção fique coberto pelo menu */
+  scroll-margin-top: 80px; 
   
   background: var(--panel-bg);
   border: 1px solid var(--glass-border);
@@ -147,9 +131,6 @@ main section:hover {
               inset 0 1px 0 rgba(0, 240, 255, 0.3);
 }
 
-/* ==========================================================================
-   4. TIPOGRAFIA & LISTAS HI-TECH
-   ========================================================================== */
 .titulo-principal {
   font-size: clamp(2.2rem, 5vw, 3.8rem);
   font-weight: 800;
@@ -202,7 +183,6 @@ main section h3 {
   margin-bottom: 0;
 }
 
-/* Estilização da lista com marcadores neon */
 .lista-detalhes {
   list-style: none;
   margin: 1rem 0;
@@ -233,9 +213,6 @@ main section h3 {
   color: var(--white);
 }
 
-/* ==========================================================================
-   5. QUIZ INTERATIVO
-   ========================================================================== */
 .quiz {
   text-align: center;
 }
@@ -347,9 +324,6 @@ main section h3 {
   font-size: 1.25rem;
 }
 
-/* ==========================================================================
-   6. RODAPÉ (FOOTER)
-   ========================================================================== */
 footer {
   text-align: center;
   padding: 2rem 1rem;
@@ -362,9 +336,6 @@ footer {
   font-size: 0.9rem;
 }
 
-/* ==========================================================================
-   7. ANIMAÇÕES DE ENTRADA / REVELAÇÃO (FADE-IN & SLIDE-UP)
-   ========================================================================== */
 section, 
 .lista-detalhes li, 
 .pergunta {
@@ -382,15 +353,11 @@ section.visivel,
   transform: translateY(0);
 }
 
-/* Escalonamento de entrada das listas */
 .lista-detalhes li:nth-child(1) { transition-delay: 0.1s; }
 .lista-detalhes li:nth-child(2) { transition-delay: 0.15s; }
 .lista-detalhes li:nth-child(3) { transition-delay: 0.2s; }
 .lista-detalhes li:nth-child(4) { transition-delay: 0.25s; }
 
-/* ==========================================================================
-   8. RESPONSIVIDADE
-   ========================================================================== */
 @media (max-width: 900px) {
   main section {
     padding: 1.5rem 1.25rem;
