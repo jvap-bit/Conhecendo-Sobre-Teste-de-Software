@@ -7,41 +7,55 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
-    <nav class="cabecalho">
-        <u class="menu">
-            <li class="itens-menu">O que é teste de software?</li>
-            <li class="itens-menu">Qual a importância do testar?</li>
-            <li class="itens-menu">Exemplos de sistemas que falharam em testes e não foram implantados.</li>
-            <li class="itens-menu">Tipos de teste de software.</li>
-            <li class="itens-menu">Quiz sobre o conteúdo apresentado.</li>
-        </u>
-    </nav>
+    <header>
+        <nav class="cabecalho">
+            <ul class="menu">
+                <li class="itens-menu"><a href="#o-que-e">O que é teste de software?</a></li>
+                <li class="itens-menu"><a href="#importancia">Qual a importância de testar?</a></li>
+                <li class="itens-menu"><a href="#falhas">Exemplos de falhas</a></li>
+                <li class="itens-menu"><a href="#tipos">Tipos de teste</a></li>
+                <li class="itens-menu"><a href="#quiz">Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main class="principal">
         <section class="secao-principal">
             <h1 class="titulo-principal">Conhecendo sobre Teste de Software</h1>
             <p class="paragrafo-principal">O teste de software é uma etapa fundamental no desenvolvimento de sistemas, garantindo que o produto final atenda aos requisitos e funcione corretamente. Ele envolve a execução de um programa ou aplicativo com a intenção de identificar erros, falhas ou comportamentos inesperados.</p>
-
         </section>
-        <section class="secao-principal">
-            <h1 class="titulo-principal">O que é teste de software?</h1>
+
+        <section id="o-que-e" class="secao-principal">
+            <h2 class="subtitulo-principal">O que é teste de software?</h2>
             <p class="paragrafo-principal">O teste de software é um processo sistemático de avaliação de um sistema ou aplicativo para identificar defeitos, falhas ou inconsistências em seu funcionamento. Ele envolve a execução de casos de teste, análise de resultados e verificação se o software atende aos requisitos especificados.</p>
-
         </section>
-        <section class="secao-principal">
-            <h1 class="titulo-principal">Qual a importância do testar?</h1>
+
+        <section id="importancia" class="secao-principal">
+            <h2 class="subtitulo-principal">Qual a importância de testar?</h2>
             <p class="paragrafo-principal">O teste de software é importante porque ajuda a garantir que o produto final atenda aos requisitos e funcione corretamente. Ele permite identificar erros e falhas antes que o software seja implantado, evitando custos e problemas futuros.</p>
-
         </section>
-        <section class="secao-principal">
-            <h1 class="titulo-principal">Exemplos de sistemas que falharam em testes e não foram implantados.</h1>
+
+        <section id="falhas" class="secao-principal">
+            <h2 class="subtitulo-principal">Exemplos de sistemas que falharam em testes e não foram implantados</h2>
             <p class="paragrafo-principal">Existem vários exemplos de sistemas que falharam em testes e não foram implantados, como o lançamento do HealthCare.gov em 2013, que enfrentou problemas significativos durante o teste, ou o sistema de pagamento do Boeing 787 Dreamliner, que teve falhas em seus testes antes da entrega.</p>
-
         </section>
-        <section class="secao-principal">
-            <h1 class="titulo-principal">Tipos de teste de software.</h1>
-            <p class="paragrafo-principal">Os tipos de teste de software incluem teste unitário, que verifica componentes individuais; teste de integração, que testa a combinação de componentes; teste funcional, que verifica se o software atende aos requisitos funcionais; e teste não funcional, que avalia aspectos como desempenho e segurança.</p>
 
+        <section id="tipos" class="secao-principal">
+            <h2 class="subtitulo-principal">Tipos de teste de software</h2>
+            <p class="paragrafo-principal">Os tipos de teste de software incluem teste unitário, que verifica componentes individuais; teste de integração, que testa a combinação de componentes; teste funcional, que verifica se o software atende aos requisitos funcionais; e teste não funcional, que avalia aspectos como desempenho e segurança.</p>
+        </section>
+
+        <section id="quiz" class="quiz">
+            <h2 class="subtitulo-principal">Quiz sobre o conteúdo apresentado</h2>
+            <p class="paragrafo-principal">Teste seus conhecimentos sobre teste de software com este quiz interativo. Responda às perguntas e veja como você se saiu!</p>
+            
+            <button class="botao-quiz" onclick="iniciarQuiz()">Iniciar Quiz</button>
+            
+            <div id="quiz-container" class="quiz-container" style="display: none;"></div>
+            <div id="resultado-container" class="resultado-container" style="display: none;"></div>
         </section>
     </main>
+
+    <script src="./assets/script.js"></script>
 </body>
 </html>
