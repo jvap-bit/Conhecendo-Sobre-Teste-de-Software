@@ -2,7 +2,7 @@
    1. VARIÁVEIS E CONFIGURAÇÕES GERAIS
    ========================================================================== */
 :root {
-  /* Nova Paleta de Cores Extaída */
+  /* Nova Paleta de Cores Extraída */
   --color-1: #0b2038; /* Azul Marinho Fechado */
   --color-2: #2a1b3d; /* Roxo Escuro */
   --color-3: #481b39; /* Bordo Escuro */
@@ -112,7 +112,7 @@ header {
 }
 
 /* ==========================================================================
-   3. CONTEÚDO PRINCIPAL (.principal, .secao-principal)
+   3. CONTEÚDO PRINCIPAL & ANIMAÇÃO DE ENTRADA LENTA NAS SEÇÕES
    ========================================================================== */
 .principal {
   max-width: 900px;
@@ -123,8 +123,9 @@ header {
   gap: 2.5rem;
 }
 
-/* Seções / Cards com Glassmorphism */
+/* Ajuste do compensador do cabeçalho fixo ao rolar por links com ID */
 main section {
+  scroll-margin-top: 80px;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
@@ -132,7 +133,33 @@ main section {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  transition: var(--transition);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+
+  /* --- Animação Nativa do Scroll (Suportado nos navegadores modernos) --- */
+  animation: revelarSecaoLento linear both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 30%;
+}
+
+@keyframes revelarSecaoLento {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Fallback via JavaScript / IntersectionObserver caso o navegador não suporte 'animation-timeline' */
+main section.secao-revelada {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  filter: blur(0) !important;
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out, filter 1.2s ease-out;
 }
 
 main section:hover {
