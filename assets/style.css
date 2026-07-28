@@ -1,28 +1,31 @@
 /* ==========================================================================
-   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS
+   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS (HI-TECH DARK BLUE)
    ========================================================================== */
 :root {
-  /* Nova Paleta de Cores Extraída */
-  --color-1: #0b2038; /* Azul Marinho Fechado */
-  --color-2: #2a1b3d; /* Roxo Escuro */
-  --color-3: #481b39; /* Bordo Escuro */
-  --color-4: #671c3d; /* Vinho / Ameixa */
-  --color-5: #8a1c41; /* Carmin / Vermelho Fechado */
-
-  /* Cores Complementares & Iluminação */
-  --cyan-neon: #00f0ff;
+  /* Paleta High-Tech Dark Blue */
+  --bg-deep: #030812;          /* Azul quase preto profundo */
+  --bg-surface: #071326;       /* Azul marinho fechado */
+  --panel-bg: rgba(10, 25, 47, 0.65); /* Painel translúcido */
+  
+  /* Accent & Neon Colors */
+  --cyan-neon: #00f0ff;        /* Ciano brilhante high-tech */
+  --blue-electric: #0077ff;    /* Azul elétrico vibrante */
+  --blue-accent: #1e3a8a;      /* Azul de contraste */
+  --purple-glow: #7000ff;      /* Roxo futurista para detalhes */
+  
+  /* Textos & Neutros */
   --white: #ffffff;
-  --gray-light: #e2e8f0;
+  --gray-light: #cbd5e1;
+  --gray-muted: #64748b;
 
-  /* Auxiliares de Design */
-  --bg-dark: #070e17;
-  --glass-bg: rgba(255, 255, 255, 0.04);
-  --glass-border: rgba(255, 255, 255, 0.12);
+  /* Auxiliares de Design & Transições */
+  --glass-border: rgba(0, 240, 255, 0.18);
+  --glass-border-hover: rgba(0, 240, 255, 0.5);
   --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reset Básico e Scroll Suave */
+/* Reset Básico */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -37,44 +40,42 @@ body {
   font-family: var(--font-main);
   color: var(--white);
   line-height: 1.6;
-  min-height: 100vh;
-  /* Fundo Degradê Fluído usando a nova paleta */
-  background: linear-gradient(135deg, var(--color-1) 0%, var(--color-2) 35%, var(--color-3) 70%, var(--color-4) 100%);
+  background-color: var(--bg-deep);
+  /* Fundo tecnológico com malha sutil de degradê */
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(0, 119, 255, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(112, 0, 255, 0.12) 0%, transparent 40%),
+    linear-gradient(180deg, var(--bg-deep) 0%, #050d1a 100%);
   background-attachment: fixed;
-  background-size: 200% 200%;
-  animation: gradientMovement 15s ease infinite;
-}
-
-@keyframes gradientMovement {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  overflow-x: hidden;
 }
 
 /* ==========================================================================
-   2. CABEÇALHO E NAVEGAÇÃO (.cabecalho, .menu, .itens-menu)
+   2. CABEÇALHO E NAVEGAÇÃO HIGH-TECH
    ========================================================================== */
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
-  background: rgba(11, 32, 56, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(3, 8, 18, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--glass-border);
 }
 
 .cabecalho {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 0.85rem 2rem;
 }
 
 .menu {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.75rem;
   list-style: none;
   flex-wrap: wrap;
 }
@@ -83,7 +84,9 @@ header {
   color: var(--gray-light);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   transition: var(--transition);
   position: relative;
   padding: 0.5rem 0;
@@ -91,10 +94,9 @@ header {
 
 .itens-menu a:hover {
   color: var(--cyan-neon);
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  text-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
 }
 
-/* Linha Neon no Hover do Menu */
 .itens-menu a::after {
   content: '';
   position: absolute;
@@ -104,7 +106,7 @@ header {
   height: 2px;
   background: var(--cyan-neon);
   transition: var(--transition);
-  box-shadow: 0 0 8px var(--cyan-neon);
+  box-shadow: 0 0 10px var(--cyan-neon);
 }
 
 .itens-menu a:hover::after {
@@ -112,109 +114,87 @@ header {
 }
 
 /* ==========================================================================
-   3. CONTEÚDO PRINCIPAL & ANIMAÇÃO DE ENTRADA LENTA NAS SEÇÕES
+   3. CONTEÚDO PRINCIPAL & SEÇÕES RECOMPACTADAS
    ========================================================================== */
 .principal {
-  max-width: 900px;
+  width: 100%;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+  padding: 5rem 1.5rem 2rem 1.5rem; /* Padding top compensa o menu fixo */
 }
 
-/* Ajuste do compensador do cabeçalho fixo ao rolar por links com ID */
+/* As seções agora se adaptam ao tamanho do conteúdo */
 main section {
-  scroll-margin-top: 80px;
-  background: var(--glass-bg);
+  scroll-margin-top: 80px; /* Evita que o topo da seção fique coberto pelo menu */
+  
+  background: var(--panel-bg);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
-  padding: 2.5rem;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-
-  /* --- Animação Nativa do Scroll (Suportado nos navegadores modernos) --- */
-  animation: revelarSecaoLento linear both;
-  animation-timeline: view();
-  animation-range: entry 10% cover 30%;
-}
-
-@keyframes revelarSecaoLento {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(0.96);
-    filter: blur(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-/* Fallback via JavaScript / IntersectionObserver caso o navegador não suporte 'animation-timeline' */
-main section.secao-revelada {
-  opacity: 1 !important;
-  transform: translateY(0) scale(1) !important;
-  filter: blur(0) !important;
-  transition: opacity 1.2s ease-out, transform 1.2s ease-out, filter 1.2s ease-out;
+  padding: 2rem 2.5rem;
+  margin: 1.5rem 0;
+  
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
 }
 
 main section:hover {
-  border-color: rgba(0, 240, 255, 0.3);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 
-              0 0 20px rgba(0, 240, 255, 0.15);
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7),
+              0 0 25px rgba(0, 240, 255, 0.2),
+              inset 0 1px 0 rgba(0, 240, 255, 0.3);
 }
 
 /* ==========================================================================
-   4. TIPOGRAFIA & LISTAS DETALHADAS
+   4. TIPOGRAFIA & LISTAS HI-TECH
    ========================================================================== */
 .titulo-principal {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
   font-weight: 800;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #ffffff 0%, var(--cyan-neon) 100%);
+  background: linear-gradient(135deg, #ffffff 0%, var(--cyan-neon) 60%, var(--blue-electric) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.5px;
+  letter-spacing: -1px;
+  drop-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
 }
 
 .subtitulo-principal {
-  font-size: 1.65rem;
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
   font-weight: 700;
   color: var(--white);
   margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .subtitulo-principal::before {
   content: '';
   display: inline-block;
-  width: 6px;
-  height: 1.5rem;
-  background: var(--color-5);
+  width: 5px;
+  height: 1.6rem;
+  background: linear-gradient(180deg, var(--cyan-neon), var(--blue-electric));
   border-radius: 4px;
-  box-shadow: 0 0 10px var(--color-5);
+  box-shadow: 0 0 12px var(--cyan-neon);
 }
 
-/* Sub-títulos internos (h3) */
 main section h3 {
   font-size: 1.25rem;
   color: var(--cyan-neon);
-  margin: 1.5rem 0 1rem 0;
+  margin: 1.5rem 0 0.85rem 0;
   font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .paragrafo-principal {
   color: var(--gray-light);
   font-size: 1.05rem;
-  line-height: 1.8;
+  line-height: 1.7;
   margin-bottom: 1rem;
 }
 
@@ -222,7 +202,7 @@ main section h3 {
   margin-bottom: 0;
 }
 
-/* Estilização da lista com marcas personalizadas */
+/* Estilização da lista com marcadores neon */
 .lista-detalhes {
   list-style: none;
   margin: 1rem 0;
@@ -240,13 +220,13 @@ main section h3 {
 }
 
 .lista-detalhes li::before {
-  content: "▹";
+  content: "◈";
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--color-5);
-  font-size: 1.2rem;
-  font-weight: bold;
+  color: var(--cyan-neon);
+  font-size: 1rem;
+  text-shadow: 0 0 8px var(--cyan-neon);
 }
 
 .lista-detalhes li strong {
@@ -258,76 +238,68 @@ main section h3 {
    ========================================================================== */
 .quiz {
   text-align: center;
-  border: 1px solid rgba(138, 28, 65, 0.4);
 }
 
 .botao-quiz {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   padding: 1rem 2.5rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--white);
-  background: linear-gradient(90deg, var(--color-5), var(--color-3));
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--bg-deep);
+  background: linear-gradient(90deg, var(--cyan-neon), var(--blue-electric));
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(138, 28, 65, 0.4);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
   transition: var(--transition);
 }
 
 .botao-quiz:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 30px rgba(0, 240, 255, 0.6);
-  background: linear-gradient(90deg, var(--color-4), var(--cyan-neon));
-  color: var(--color-1);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
+  background: linear-gradient(90deg, #ffffff, var(--cyan-neon));
 }
 
 .quiz-container, 
 .resultado-container {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   text-align: left;
   padding: 1.5rem;
-  background: rgba(0, 0, 0, 0.25);
-  border-radius: 12px;
+  background: rgba(3, 8, 18, 0.6);
+  border-radius: 16px;
   border: 1px solid var(--glass-border);
 }
 
 .pergunta {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(7, 19, 38, 0.5);
   border: 1px solid var(--glass-border);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  border-radius: 14px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
   transition: var(--transition);
 }
 
 .pergunta:hover {
-  border-color: rgba(138, 28, 65, 0.5);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border-color: var(--cyan-neon);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
 }
 
 .pergunta h3 {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   color: var(--white);
   margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-.pergunta ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  list-style: none;
 }
 
 .pergunta label {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.85rem 1.25rem;
-  background: rgba(255, 255, 255, 0.03);
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   color: var(--gray-light);
   font-size: 0.95rem;
@@ -335,17 +307,17 @@ main section h3 {
 }
 
 .pergunta label:hover {
-  background: rgba(138, 28, 65, 0.2);
-  border-color: var(--color-5);
+  background: rgba(0, 240, 255, 0.08);
+  border-color: var(--cyan-neon);
   color: var(--white);
-  transform: translateX(5px);
+  transform: translateX(4px);
 }
 
 .pergunta label:has(input[type="radio"]:checked) {
-  background: rgba(0, 240, 255, 0.1);
+  background: rgba(0, 240, 255, 0.15);
   border-color: var(--cyan-neon);
   color: var(--cyan-neon);
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
 }
 
 .pergunta input[type="radio"] {
@@ -355,29 +327,24 @@ main section h3 {
   cursor: pointer;
 }
 
-#quiz-container .botao-quiz {
-  display: block;
-  margin: 2rem auto 0 auto;
-}
-
 .resultado-container {
   text-align: center;
   padding: 2.5rem 1.5rem;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(3, 8, 18, 0.8);
   border: 1px solid var(--cyan-neon);
-  box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.3);
 }
 
 .resultado-container h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: var(--cyan-neon);
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
   text-transform: uppercase;
 }
 
 .resultado-container strong {
-  color: var(--color-5);
-  font-size: 1.3rem;
+  color: var(--cyan-neon);
+  font-size: 1.25rem;
 }
 
 /* ==========================================================================
@@ -386,27 +353,55 @@ main section h3 {
 footer {
   text-align: center;
   padding: 2rem 1rem;
-  background: rgba(11, 32, 56, 0.9);
+  background: var(--bg-deep);
   border-top: 1px solid var(--glass-border);
-  margin-top: 3rem;
 }
 
 .paragrafo-rodape {
-  color: var(--gray-light);
+  color: var(--gray-muted);
   font-size: 0.9rem;
-  opacity: 0.8;
 }
 
 /* ==========================================================================
-   7. RESPONSIVIDADE
+   7. ANIMAÇÕES DE ENTRADA / REVELAÇÃO (FADE-IN & SLIDE-UP)
    ========================================================================== */
-@media (max-width: 768px) {
-  .menu {
-    flex-direction: column;
-    gap: 0.75rem;
+section, 
+.lista-detalhes li, 
+.pergunta {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+section.visivel, 
+.lista-detalhes li.visivel, 
+.pergunta.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Escalonamento de entrada das listas */
+.lista-detalhes li:nth-child(1) { transition-delay: 0.1s; }
+.lista-detalhes li:nth-child(2) { transition-delay: 0.15s; }
+.lista-detalhes li:nth-child(3) { transition-delay: 0.2s; }
+.lista-detalhes li:nth-child(4) { transition-delay: 0.25s; }
+
+/* ==========================================================================
+   8. RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 900px) {
+  main section {
+    padding: 1.5rem 1.25rem;
+    margin: 1rem 0;
   }
 
-  main section {
-    padding: 1.5rem;
+  .menu {
+    gap: 0.85rem;
+  }
+
+  .itens-menu a {
+    font-size: 0.8rem;
   }
 }
