@@ -273,11 +273,31 @@
             <div id="quiz-container" class="quiz-container" style="display: none;"></div>
             <div id="resultado-container" class="resultado-container" style="display: none;"></div>
         </section>
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+
     </main>
 
     <footer>
         <p class="paragrafo-rodape">&copy; Conhecendo sobre Teste de Software — Todos os direitos reservados.</p>
     </footer>
+
+    <script src="./assets/js/vlibras.js"></script>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+    <script>
+
+        new window.VLibras.Widget(
+            "https://vlibras.gov.br/app"
+        );
+
+    </script>
 
     <script src="./assets/script.js"></script>
 </body>

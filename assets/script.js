@@ -243,3 +243,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const elementosParaAnimar = document.querySelectorAll('section, .lista-detalhes li');
     elementosParaAnimar.forEach(el => observador.observe(el));
 });
+
+function carregarVLibras() {
+
+    // Evita carregar duas vezes
+    if (document.getElementById("vlibras-script")) {
+        return;
+    }
+}
