@@ -1,9 +1,8 @@
-// Função auxiliar para criptografar texto em Base64 (suporta UTF-8/Acentuação)
 function gerarHash(texto) {
     return btoa(encodeURIComponent(texto));
 }
 
-// Função auxiliar para descriptografar
+
 function descriptografar(hash) {
     return decodeURIComponent(atob(hash));
 }
@@ -251,3 +250,138 @@ function carregarVLibras() {
         return;
     }
 }
+
+// ==========================================
+// CAÇA-PALAVRAS INTERATIVO (QA & TESTES)
+// ==========================================
+
+const palavrasCaca = [
+    "SOFTWARE",
+    "TESTE",
+    "DEFEITO",
+    "FALHA",
+    "UNITARIO",
+    "CYPRESS",
+    "POSTMAN",
+    "JMETER",
+    "JIRA",
+    "REGRESSAO"
+];
+
+const TAMANHO_GRID = 12;
+let matrizGrid = Array(TAMANHO_GRID).fill(null).map(() => Array(TAMANHO_GRID).fill(''));
+let letrasSelecionadas = [];
+
+function criarCacaPalavras() {
+    const gridContainer = document.getElementById('grid-caca-palavras');
+    const listaContainer = document.getElementById('lista-palavras');
+
+    if (!gridContainer || !listaContainer) return;
+
+    // Renderiza a lista de palavras lateral
+    listaContainer.innerHTML = palavrasCaca
+        .map(p => `<li id="word-${p}">${p}</li>`)
+        .join('');
+
+    // Preenche as palavras na matriz (Horizontal e Vertical)
+    palavrasCaca.forEach(palavra => posicionarPalavra(palavra));
+
+    // Preenche os espaços vazios com letras aleatórias
+    const alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (let r = 0; r < TAMANHO_GRID; r++) {
+        for (let c = 0; c < TAMANHO_GRID; c++) {
+            if (matrizGrid[r][c] === '') {
+                matrizGrid[r][c] = alfabeto[Math.floor(Math.random() * alfabeto.length)];
+            }
+        }
+    }
+
+    // Renderiza a grade HTML
+    gridContainer.innerHTML = '';
+    for (let r = 0; r < TAMANHO_GRID; r++) {
+        for (let c = 0; c < TAMANHO_GRID; c++) {
+            const celula = document.createElement('div');
+            celula.classList.add('celula-letra');
+            celula.textContent = matrizGrid[r][c];
+            celula.dataset.row = r;
+            celula.dataset.col = c;
+            
+            celula.addEventListener('click', () => selecionarCelula(celula, r, c));
+            gridContainer.appendChild(celula);
+        }
+    }
+}
+
+function posicionarPalavra(palavra) {
+    let posicionou = false;
+    let tentativas = 0;
+
+    while (!posicionou && tentativas < 100) {
+        tentativas++;
+        const direcao = Math.random() > 0.5 ? 'H' : 'V'; // Horizontal ou Vertical
+        const linhaMax = direcao === 'V' ? TAMANHO_GRID - palavra.length : TAMANHO_GRID;
+        const colMax = direcao === 'H' ? TAMANHO_GRID - palavra.length : TAMANHO_GRID;
+
+        const row = Math.floor(Math.random() * linhaMax);
+        const col = Math.floor(Math.random() * colMax);
+
+        let podePosicionar = true;
+        for (let i = 0; i < palavra.length; i++) {
+            const r = direcao === 'V' ? row + i : row;
+            const c = direcao === 'H' ? col + i : col;
+            if (matrizGrid[r][c] !== '' && matrizGrid[r][c] !== palavra[i]) {
+                podePosicionar = false;
+                break;
+            }
+        }
+
+        if (podePosicionar) {
+            for (let i = 0; i < palavra.length; i++) {
+                const r = direcao === 'V' ? row + i : row;
+                const c = direcao === 'H' ? col + i : col;
+                matrizGrid[r][c] = palavra[i];
+            }
+            posicionou = true;
+        }
+    }
+}
+
+function selecionarCelula(celula, r, c) {
+    if (celula.classList.contains('encontrada')) return;
+
+    if (celula.classList.contains('selecionada')) {
+        celula.classList.remove('selecionada');
+        letrasSelecionadas = letrasSelecionadas.filter(item => item.celula !== celula);
+    } else {
+        celula.classList.add('selecionada');
+        letrasSelecionadas.push({ celula, letra: celula.textContent, row: r, col: c });
+    }
+
+    verificarPalavraFormada();
+}
+
+function verificarPalavraFormada() {
+    const palavraFormada = letrasSelecionadas.map(item => item.letra).join('');
+    const palavraInversa = palavraFormada.split('').reverse().join('');
+
+    const palavraEncontrada = palavrasCaca.find(p => p === palavraFormada || p === palavraInversa);
+
+    if (palavraEncontrada) {
+        letrasSelecionadas.forEach(item => {
+            item.celula.classList.remove('selecionada');
+            item.celula.classList.add('encontrada');
+        });
+
+        const elementoLista = document.getElementById(`word-${palavraEncontrada}`);
+        if (elementoLista) {
+            elementoLista.classList.add('riscada');
+        }
+
+        letrasSelecionadas = [];
+    }
+}
+
+// Inicializa o Caça-Palavras quando o HTML carregar
+document.addEventListener("DOMContentLoaded", () => {
+    criarCacaPalavras();
+});
