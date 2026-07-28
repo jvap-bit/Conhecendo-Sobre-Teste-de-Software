@@ -621,3 +621,48 @@ function restaurarPreferenciasAcessibilidade() {
         if (select) select.value = modoSalvo;
     }
 }
+
+function dispararConfetes() {
+    if (typeof confetti === 'function') {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+        setTimeout(() => {
+            confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 } });
+            confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 } });
+        }, 250);
+    }
+}
+
+function verificarPalavraFormada() {
+    const idsSelecionados = letrasSelecionadas.map(item => item.id);
+
+    for (const [palavra, coordenadas] of Object.entries(posicoesPalavras)) {
+        if (coordenadas.length === idsSelecionados.length) {
+            const acertou = coordenadas.every(coord => idsSelecionados.includes(coord));
+
+            if (acertou) {
+                letrasSelecionadas.forEach(item => {
+                    item.celula.classList.remove('selecionada');
+                    item.celula.classList.add('encontrada');
+                });
+
+                const elementoLista = document.getElementById(`word-${palavra}`);
+                if (elementoLista) {
+                    elementoLista.classList.add('riscada');
+                }
+
+                letrasSelecionadas = [];
+                delete posicoesPalavras[palavra];
+
+                if (Object.keys(posicoesPalavras).length === 0) {
+                    dispararConfetes();
+                }
+
+                break;
+            }
+        }
+    }
+}
