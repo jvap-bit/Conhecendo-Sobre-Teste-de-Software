@@ -28,63 +28,9 @@
 
     <main class="principal">
 
-<<<<<<< HEAD
-
-        <section id="inicio" class="hero">
-            <div class="hero-grid">
-                <div class="hero-copy">
-                    <p class="eyebrow">// controle de qualidade</p>
-                    <h1 class="titulo-principal">Se ninguém testou,<br>ainda não funciona.</h1>
-                    <p class="paragrafo-principal hero-lead">Teste de software é a etapa que garante que o sistema cumpra os requisitos do negócio, funcione com segurança e ofereça uma boa experiência — antes que o usuário descubra os problemas por você.</p>
-                    <div class="hero-ctas">
-                        <a href="#quiz" class="btn btn-primary">Fazer o quiz</a>
-                        <a href="#o-que-e" class="btn btn-secondary">Entender os conceitos</a>
-                    </div>
-                </div>
-
-                <div class="terminal" aria-hidden="true">
-                    <div class="terminal-bar">
-                        <span class="terminal-dot dot-red"></span>
-                        <span class="terminal-dot dot-yellow"></span>
-                        <span class="terminal-dot dot-green"></span>
-                        <span class="terminal-title">bash — suite.test.js</span>
-                    </div>
-                    <div class="terminal-body">
-                        <p class="term-line term-cmd">$ npm run test:producao</p>
-                        <p class="term-line term-pass">✓ requisitos de negócio <span class="term-time">42ms</span></p>
-                        <p class="term-line term-pass">✓ integridade dos dados <span class="term-time">118ms</span></p>
-                        <p class="term-line term-fail">✗ carga de 10.000 usuários simultâneos</p>
-                        <p class="term-line term-note">  → deploy bloqueado antes do lançamento</p>
-                        <p class="term-line term-summary">1 falha encontrada antes do usuário ver<span class="term-cursor">_</span></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="stats-strip">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <p class="stat-number">100x</p>
-                    <p class="stat-label">mais caro corrigir um bug em produção do que no início do desenvolvimento</p>
-                </div>
-                <div class="stat-card">
-                    <p class="stat-number">$370M</p>
-                    <p class="stat-label">prejuízo do foguete Ariane 5, causado por um erro não testado (1996)</p>
-                </div>
-                <div class="stat-card">
-                    <p class="stat-number">37s</p>
-                    <p class="stat-label">tempo entre o lançamento do Ariane 5 e a explosão em voo</p>
-                </div>
-                <div class="stat-card">
-                    <p class="stat-number">10</p>
-                    <p class="stat-label">perguntas no quiz para testar o que você aprendeu aqui</p>
-                </div>
-            </div>
-=======
         <section id="inicio">
             <h1 class="titulo-principal">Conhecendo sobre Teste de Software</h1>
             <p class="paragrafo-principal">O teste de software é uma etapa fundamental na engenharia e no desenvolvimento de sistemas, garantindo que o produto final atenda aos requisitos de negócio, ofereça boa experiência ao usuário e funcione com segurança e estabilidade. Ele envolve a execução planejada de um programa para identificar erros, falhas ou comportamentos inesperados antes do lançamento.</p>
->>>>>>> 6b3726d71ce779c4e37cec36db389d09646331b8
         </section>
 
         <section id="o-que-e">
@@ -273,12 +219,30 @@
             <div id="quiz-container" class="quiz-container" style="display: none;"></div>
             <div id="resultado-container" class="resultado-container" style="display: none;"></div>
         </section>
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
     </main>
 
     <footer>
         <p class="paragrafo-rodape">&copy; Conhecendo sobre Teste de Software — Todos os direitos reservados.</p>
     </footer>
 
-    <script src="./assets/script.js"></script>
+    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/vlibras.js"></script>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+    <script>
+
+        new window.VLibras.Widget(
+            "https://vlibras.gov.br/app"
+        );
+
+    </script>
 </body>
 </html>
