@@ -1,12 +1,22 @@
+// ==========================================
+// FUNÇÕES DE HASH / CRIPTOGRAFIA (UTF-8 SAFE)
+// ==========================================
 function gerarHash(texto) {
-    return btoa(encodeURIComponent(texto));
+    const bytes = new TextEncoder().encode(texto);
+    let binary = '';
+    bytes.forEach(b => binary += String.fromCharCode(b));
+    return btoa(binary);
 }
-
 
 function descriptografar(hash) {
-    return decodeURIComponent(atob(hash));
+    const binary = atob(hash);
+    const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+    return new TextDecoder().decode(bytes);
 }
 
+// ==========================================
+// BASE DE DADOS DO QUIZ
+// ==========================================
 const quiz = [
     {
         pergunta: "Qual é o principal objetivo do teste de software?",
@@ -16,7 +26,7 @@ const quiz = [
             "Criar o design gráfico das telas do sistema.",
             "Substituir a equipe de desenvolvedores."
         ],
-        respostaHash: "R2FyYW50aXIlMjBxdWUlMjBvJTIwcHJvZHV0byUyMGF0ZW5kYSUyMGFvcyUyMHJlcXVpc2l0b3MlMjBlJTIwaWRlbnRpZmlxdWUlMjBmYWxoYXMlMjBhbnRlcyUyMGRhJTIwaW1wbGFudGElQzMlQTdhby4="
+        respostaHash: gerarHash("Garantir que o produto atenda aos requisitos e identificar falhas antes da implantação.")
     },
     {
         pergunta: "O que é o Teste Unitário?",
@@ -26,7 +36,7 @@ const quiz = [
             "Teste de integração entre vários sistemas externos.",
             "Verificação de componentes individuais do código."
         ],
-        respostaHash: "VmVyaWZpY2ElQzMlQTdhbyUyMGRlJTIwY29tcG9uZW50ZXMlMjBpbmRpdmlkdWFpcyUyMGRvJTIwYyVDMyVCM2RpZ28u"
+        respostaHash: gerarHash("Verificação de componentes individuais do código.")
     },
     {
         pergunta: "Por que é importante testar o software antes da sua implantação?",
@@ -36,7 +46,7 @@ const quiz = [
             "Apenas para cumprir exigências burocráticas.",
             "Para obrigar os usuários a atualizarem o computador."
         ],
-        respostaHash: "UGFyYSUyMGV2aXRhciUyMGN1c3RvcyUyMGVsZXZhZG9zJTJDJTIwZXJyb3MlMjBlJTIwcHJvYmxlbWFzJTIwZnV0dXJvcyUyMG5vJTIwc2lzdGVtYS4="
+        respostaHash: gerarHash("Para evitar custos elevados, erros e problemas futuros no sistema.")
     },
     {
         pergunta: "Qual dos tipos de teste avalia aspectos como desempenho e segurança?",
@@ -46,7 +56,7 @@ const quiz = [
             "Teste Não Funcional.",
             "Teste Manual Básico."
         ],
-        respostaHash: "VGVzdGUlMjBOJUMzJUExbyUyMEZ1bmNpb25hbC4="
+        respostaHash: gerarHash("Teste Não Funcional.")
     },
     {
         pergunta: "Qual é o objetivo principal do Teste de Integração?",
@@ -56,7 +66,7 @@ const quiz = [
             "Garantir que o servidor nunca desligue.",
             "Testar apenas um trecho isolado de uma função sem conectar com nada."
         ],
-        respostaHash: "VGVzdGFyJTIwYSUyMGNvbWJpbmElQzMlQTdhbyUyMGUlMjBhJTIwaW50ZXJhJUMzJUExbyUyMGVudHJlJTIwZGlmZXJlbnRlcyUyMG0lQzMlQjRkdWxvcyUyMG91JTIwY29tcG9uZW50ZXMu"
+        respostaHash: gerarHash("Testar a combinação e a interação entre diferentes módulos ou componentes.")
     },
     {
         pergunta: "Qual destes exemplos é citado no texto como um sistema que enfrentou problemas graves nos testes?",
@@ -66,7 +76,7 @@ const quiz = [
             "A criação do primeiro navegador web.",
             "O sistema de caixa eletrônico do Banco Central."
         ],
-        respostaHash: "TGFuJUMzJUE3YW1lbnRvJTIwZG8lMjBIZWFsdGhDYXJlLmdvdiUyMGVtJTIwMjAxMy4="
+        respostaHash: gerarHash("Lançamento do HealthCare.gov em 2013.")
     },
     {
         pergunta: "O que o Teste Funcional verifica no sistema?",
@@ -76,7 +86,7 @@ const quiz = [
             "Se o código-fonte possui comentários explicativos.",
             "A resistência do hardware contra impactos físicos."
         ],
-        respostaHash: "U2UlMjBvJTIwc29mdHdhcmUlMjBhdGVuZGUlMjBhb3MlMjByZXF1aXNpdG9zJTIwZnVuY2lvbmFpcyUyMGUlMjBjb21wb3J0YW1lbnRvcyUyMGVzcGVyYWRvcyUyMHBlbG8lMjB1c3UlQzMlQTFyaW8u"
+        respostaHash: gerarHash("Se o software atende aos requisitos funcionais e comportamentos esperados pelo usuário.")
     },
     {
         pergunta: "O teste de software é considerado uma etapa...",
@@ -86,17 +96,17 @@ const quiz = [
             "Exclusiva apenas para aplicativos de celular.",
             "Que deve ser feita somente após os clientes reclamarem dos erros."
         ],
-        respostaHash: "RnVuZGFtZW50YWwlMjBubyUyMGRlc2Vudm9sdmltZW50byUyMHBhcmElMjBpZGVudGlmaWNhciUyMGVycm9zJTIwZSUyMGNvbXBvcnRhbWVudG9zJTIwaW5lc3BlcmFkb3Mu"
+        respostaHash: gerarHash("Fundamental no desenvolvimento para identificar erros e comportamentos inesperados.")
     },
     {
         pergunta: "Qual outro sistema real é mencionado no texto como exemplo de falhas registradas durante os testes?",
         opcoes: [
-            "O sistema de pagamento do Boeing 787 Dreamliner.",
+            "O Boeing 787 Dreamliner com falha no controle de geradores elétricos.",
             "O sistema de piloto automático de carros elétricos.",
             "O software de controle de tráfego aéreo de Londres.",
             "A rede interna da agência espacial NASA."
         ],
-        respostaHash: "TyUyMHNpc3RlbWElMjBkZSUyMHBhZ2FtZW50byUyMGRvJTIwQm9laW5nJTIwNzg3JTIwRHJlYW1saW5lci4="
+        respostaHash: gerarHash("O Boeing 787 Dreamliner com falha no controle de geradores elétricos.")
     },
     {
         pergunta: "O que envolve a prática do teste de software?",
@@ -106,10 +116,13 @@ const quiz = [
             "Gravação de vídeos promocionais para divulgação do programa.",
             "Apenas a formatação do computador onde o sistema foi criado."
         ],
-        respostaHash: "RXhlY3UlQzMlQTdhbyUyMGRlJTIwY2Fzb3MlMjBkZSUyMHRlc3RlJTJDJTIwYW4lQzMlQTFsaXNlJTIwZGUlMjByZXN1bHRhZG9zJTIwZSUyMHZlcmlmaWNhJUMzJUExbyUyMGRvcyUyMHJlcXVpc2l0b3Mu"
+        respostaHash: gerarHash("Execução de casos de teste, análise de resultados e verificação dos requisitos.")
     }
 ];
 
+// ==========================================
+// LÓGICA DO QUIZ INTERATIVO
+// ==========================================
 let perguntaAtual = 0;
 let pontos = 0;
 let respostasDoUsuario = [];
@@ -122,16 +135,16 @@ function iniciarQuiz() {
     const quizContainer = document.getElementById('quiz-container');
     const resultadoContainer = document.getElementById('resultado-container');
     
-    quizContainer.style.display = 'block';
-    resultadoContainer.style.display = 'none';
-
-    quizContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (quizContainer) quizContainer.style.display = 'block';
+    if (resultadoContainer) resultadoContainer.style.display = 'none';
 
     mostrarPergunta();
 }
 
 function mostrarPergunta() {
     const quizContainer = document.getElementById('quiz-container');
+    if (!quizContainer) return;
+    
     quizContainer.innerHTML = '';
 
     const dadosPergunta = quiz[perguntaAtual];
@@ -143,8 +156,8 @@ function mostrarPergunta() {
         <ul style="list-style: none; padding: 0;">
             ${dadosPergunta.opcoes.map((opcao) => `
                 <li style="margin-bottom: 10px;">
-                    <label style="cursor: pointer; display: block; padding: 10px; border-radius: 6px; background: rgba(255,255,255,0.05); transition: background 0.2s;">
-                        <input type="radio" name="resposta" value="${opcao}" onchange="selecionarResposta(this.value)"> 
+                    <label style="cursor: pointer; display: block; padding: 10px; border-radius: 6px;">
+                        <input type="radio" name="resposta" value="${opcao.replace(/"/g, '&quot;')}" onchange="selecionarResposta(this.value)"> 
                         ${opcao}
                     </label>
                 </li>
@@ -162,7 +175,6 @@ function mostrarPergunta() {
 function selecionarResposta(opcaoEscolhida) {
     respostasDoUsuario.push(opcaoEscolhida);
 
-    // Converte a escolha do usuário em Hash para validar contra o Hash armazenado
     const hashOpcaoEscolhida = gerarHash(opcaoEscolhida);
 
     if (hashOpcaoEscolhida === quiz[perguntaAtual].respostaHash) {
@@ -184,7 +196,9 @@ function exibirResultado(pontosObtidos, total) {
     const quizContainer = document.getElementById('quiz-container');
     const resultadoContainer = document.getElementById('resultado-container');
 
-    quizContainer.style.display = 'none';
+    if (quizContainer) quizContainer.style.display = 'none';
+    if (!resultadoContainer) return;
+
     resultadoContainer.style.display = 'block';
 
     const percentual = Math.round((pontosObtidos / total) * 100);
@@ -195,7 +209,7 @@ function exibirResultado(pontosObtidos, total) {
         const acertou = respostaUsuario === respostaCorretaTexto;
 
         return `
-            <div style="margin-bottom: 20px; padding: 15px; border-radius: 8px; background: rgba(255,255,255,0.03); border-left: 5px solid ${acertou ? '#2ed573' : '#ff4757'}; text-align: left;">
+            <div style="margin-bottom: 20px; padding: 15px; border-radius: 8px; border-left: 5px solid ${acertou ? '#2ed573' : '#ff4757'}; text-align: left;">
                 <p style="font-weight: bold; margin-bottom: 8px;">${index + 1}. ${item.pergunta}</p>
                 <p style="margin: 4px 0; color: ${acertou ? '#2ed573' : '#ff4757'};">
                     <strong>Sua resposta:</strong> ${respostaUsuario} ${acertou ? '✓ (Correto)' : '✗ (Incorreto)'}
@@ -227,76 +241,70 @@ function exibirResultado(pontosObtidos, total) {
     setTimeout(() => resultadoContainer.classList.add('visivel'), 50);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const observador = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visivel');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.15
-    });
-
-    const elementosParaAnimar = document.querySelectorAll('section, .lista-detalhes li');
-    elementosParaAnimar.forEach(el => observador.observe(el));
-});
-
-function carregarVLibras() {
-
-    // Evita carregar duas vezes
-    if (document.getElementById("vlibras-script")) {
-        return;
-    }
-}
-
-
-const palavrasCaca = [
-    "SOFTWARE",
-    "TESTE",
-    "DEFEITO",
-    "FALHA",
-    "UNITARIO",
-    "CYPRESS",
-    "POSTMAN",
-    "JMETER",
-    "JIRA",
-    "REGRESSAO"
+// ==========================================
+// CAÇA-PALAVRAS INTERATIVO (GRID EXPANDIDO 15x12)
+// ==========================================
+const bancoDePalavras = [
+    "SOFTWARE", "TESTE", "DEFEITO", "FALHA", "UNITARIO",
+    "CYPRESS", "POSTMAN", "JMETER", "JIRA", "REGRESSAO",
+    "BUG", "SELENIUM", "PLAYWRIGHT", "AUTOMACAO", "MOCK",
+    "ASSERT", "COBERTURA", "PIPELINE", "INTEGRACAO", "VALIDACAO",
+    "CUCUMBER", "QUALITY", "PROD", "STAGING", "SMOKE", "BLACKBOX"
 ];
 
-const TAMANHO_GRID = 12;
-let matrizGrid = Array(TAMANHO_GRID).fill(null).map(() => Array(TAMANHO_GRID).fill(''));
+let palavrasCaca = [];
+const LINHAS_GRID = 12;
+const COLUNAS_GRID = 15; // Ajustado para preencher a largura no desktop
+let matrizGrid = [];
 let letrasSelecionadas = [];
+let posicoesPalavras = {};
+
+function sortearPalavras(quantidade = 15) {
+    const embaralhadas = [...bancoDePalavras].sort(() => 0.5 - Math.random());
+    return embaralhadas.slice(0, quantidade);
+}
 
 function criarCacaPalavras() {
     const gridContainer = document.getElementById('grid-caca-palavras');
     const listaContainer = document.getElementById('lista-palavras');
 
-    if (!gridContainer || !listaContainer) return;
+    if (!gridContainer || !listaContainer) {
+        console.warn("Aviso: Elementos HTML do Caça-Palavras não foram encontrados.");
+        return;
+    }
 
-    // Renderiza a lista de palavras lateral
+    // Sorteia 15 palavras
+    palavrasCaca = sortearPalavras(15);
+
+    // Cria matriz 12 x 15
+    matrizGrid = Array(LINHAS_GRID).fill(null).map(() => Array(COLUNAS_GRID).fill(''));
+    posicoesPalavras = {};
+    letrasSelecionadas = [];
+
     listaContainer.innerHTML = palavrasCaca
         .map(p => `<li id="word-${p}">${p}</li>`)
         .join('');
 
-    // Preenche as palavras na matriz (Horizontal e Vertical)
     palavrasCaca.forEach(palavra => posicionarPalavra(palavra));
 
-    // Preenche os espaços vazios com letras aleatórias
     const alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    for (let r = 0; r < TAMANHO_GRID; r++) {
-        for (let c = 0; c < TAMANHO_GRID; c++) {
+    for (let r = 0; r < LINHAS_GRID; r++) {
+        for (let c = 0; c < COLUNAS_GRID; c++) {
             if (matrizGrid[r][c] === '') {
                 matrizGrid[r][c] = alfabeto[Math.floor(Math.random() * alfabeto.length)];
             }
         }
     }
 
-    // Renderiza a grade HTML
     gridContainer.innerHTML = '';
-    for (let r = 0; r < TAMANHO_GRID; r++) {
-        for (let c = 0; c < TAMANHO_GRID; c++) {
+
+    // Aplica o grid de 15 colunas diretamente
+    gridContainer.style.display = 'grid';
+    gridContainer.style.gridTemplateColumns = `repeat(${COLUNAS_GRID}, 1fr)`;
+    gridContainer.style.width = '100%';
+
+    for (let r = 0; r < LINHAS_GRID; r++) {
+        for (let c = 0; c < COLUNAS_GRID; c++) {
             const celula = document.createElement('div');
             celula.classList.add('celula-letra');
             celula.textContent = matrizGrid[r][c];
@@ -309,18 +317,24 @@ function criarCacaPalavras() {
     }
 }
 
+function reembaralharCacaPalavras() {
+    criarCacaPalavras();
+}
+
 function posicionarPalavra(palavra) {
     let posicionou = false;
     let tentativas = 0;
 
-    while (!posicionou && tentativas < 100) {
+    while (!posicionou && tentativas < 300) {
         tentativas++;
-        const direcao = Math.random() > 0.5 ? 'H' : 'V'; // Horizontal ou Vertical
-        const linhaMax = direcao === 'V' ? TAMANHO_GRID - palavra.length : TAMANHO_GRID;
-        const colMax = direcao === 'H' ? TAMANHO_GRID - palavra.length : TAMANHO_GRID;
+        const direcao = Math.random() > 0.5 ? 'H' : 'V';
+        const linhaMax = direcao === 'V' ? LINHAS_GRID - palavra.length : LINHAS_GRID - 1;
+        const colMax = direcao === 'H' ? COLUNAS_GRID - palavra.length : COLUNAS_GRID - 1;
 
-        const row = Math.floor(Math.random() * linhaMax);
-        const col = Math.floor(Math.random() * colMax);
+        if (linhaMax < 0 || colMax < 0) continue;
+
+        const row = Math.floor(Math.random() * (linhaMax + 1));
+        const col = Math.floor(Math.random() * (colMax + 1));
 
         let podePosicionar = true;
         for (let i = 0; i < palavra.length; i++) {
@@ -333,11 +347,14 @@ function posicionarPalavra(palavra) {
         }
 
         if (podePosicionar) {
+            let celulasPalavra = [];
             for (let i = 0; i < palavra.length; i++) {
                 const r = direcao === 'V' ? row + i : row;
                 const c = direcao === 'H' ? col + i : col;
                 matrizGrid[r][c] = palavra[i];
+                celulasPalavra.push(`${r}-${c}`);
             }
+            posicoesPalavras[palavra] = celulasPalavra;
             posicionou = true;
         }
     }
@@ -346,43 +363,85 @@ function posicionarPalavra(palavra) {
 function selecionarCelula(celula, r, c) {
     if (celula.classList.contains('encontrada')) return;
 
+    const idCoordenada = `${r}-${c}`;
+
     if (celula.classList.contains('selecionada')) {
         celula.classList.remove('selecionada');
-        letrasSelecionadas = letrasSelecionadas.filter(item => item.celula !== celula);
+        letrasSelecionadas = letrasSelecionadas.filter(item => item.id !== idCoordenada);
     } else {
         celula.classList.add('selecionada');
-        letrasSelecionadas.push({ celula, letra: celula.textContent, row: r, col: c });
+        letrasSelecionadas.push({ celula, id: idCoordenada });
     }
 
     verificarPalavraFormada();
 }
 
 function verificarPalavraFormada() {
-    const palavraFormada = letrasSelecionadas.map(item => item.letra).join('');
-    const palavraInversa = palavraFormada.split('').reverse().join('');
+    const idsSelecionados = letrasSelecionadas.map(item => item.id);
 
-    const palavraEncontrada = palavrasCaca.find(p => p === palavraFormada || p === palavraInversa);
+    for (const [palavra, coordenadas] of Object.entries(posicoesPalavras)) {
+        if (coordenadas.length === idsSelecionados.length) {
+            const acertou = coordenadas.every(coord => idsSelecionados.includes(coord));
 
-    if (palavraEncontrada) {
-        letrasSelecionadas.forEach(item => {
-            item.celula.classList.remove('selecionada');
-            item.celula.classList.add('encontrada');
-        });
+            if (acertou) {
+                letrasSelecionadas.forEach(item => {
+                    item.celula.classList.remove('selecionada');
+                    item.celula.classList.add('encontrada');
+                });
 
-        const elementoLista = document.getElementById(`word-${palavraEncontrada}`);
-        if (elementoLista) {
-            elementoLista.classList.add('riscada');
+                const elementoLista = document.getElementById(`word-${palavra}`);
+                if (elementoLista) {
+                    elementoLista.classList.add('riscada');
+                }
+
+                letrasSelecionadas = [];
+                delete posicoesPalavras[palavra];
+                break;
+            }
         }
-
-        letrasSelecionadas = [];
     }
 }
 
-// Inicializa o Caça-Palavras quando o HTML carregar
+// ==========================================
+// INICIALIZADORES E EVENTOS (DOM LOADED)
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
+    // Menu Hamburguer Mobile
+    const menuToggle = document.getElementById('menuToggle');
+    const menuNavegacao = document.getElementById('menuNavegacao');
+
+    if (menuToggle && menuNavegacao) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            menuNavegacao.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.itens-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                menuNavegacao.classList.remove('active');
+            });
+        });
+    }
+
+    // Animações de Scroll
+    const observador = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visivel');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    const elementosParaAnimar = document.querySelectorAll('section, .lista-detalhes li');
+    elementosParaAnimar.forEach(el => observador.observe(el));
+
+    // Inicialização do Caça-Palavras
     criarCacaPalavras();
 });
 
+// Gerenciamento do Tema Escuro/Claro
 (function () {
     const root = document.documentElement;
     const switchInput = document.getElementById('themeSwitch');

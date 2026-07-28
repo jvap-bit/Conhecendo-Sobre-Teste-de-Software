@@ -13,7 +13,14 @@
     <header class="site-header">
         <nav class="cabecalho">
             <a href="#inicio" class="logo">QA<span>_LAB</span></a>
-            <ul class="menu">
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="menu" id="menuNavegacao">
                 <li class="itens-menu"><a href="#inicio">Início</a></li>
                 <li class="itens-menu"><a href="#o-que-e">O que é?</a></li>
                 <li class="itens-menu"><a href="#conceitos">Conceitos</a></li>
@@ -23,19 +30,17 @@
                 <li class="itens-menu"><a href="#ferramentas">Ferramentas</a></li>
                 <li class="itens-menu"><a href="#quiz" class="menu-cta">Quiz</a></li>
             </ul>
-                <label class="theme-switch" title="Alternar tema claro/escuro">
-        <input type="checkbox" id="themeSwitch">
-        <span class="switch-track">
-            <span class="switch-thumb"></span>
-        </span>
-    </label>
+
+            <label class="theme-switch" title="Alternar tema claro/escuro">
+                <input type="checkbox" id="themeSwitch">
+                <span class="switch-track">
+                    <span class="switch-thumb"></span>
+                </span>
+            </label>
         </nav>
     </header>
 
     <main class="principal">
-
-<<<<<<< HEAD
-
         <section id="inicio" class="hero">
             <div class="hero-grid">
                 <div class="hero-copy">
@@ -86,11 +91,6 @@
                     <p class="stat-label">perguntas no quiz para testar o que você aprendeu aqui</p>
                 </div>
             </div>
-=======
-        <section id="inicio">
-            <h1 class="titulo-principal">Conhecendo sobre Teste de Software</h1>
-            <p class="paragrafo-principal">O teste de software é uma etapa fundamental na engenharia e no desenvolvimento de sistemas, garantindo que o produto final atenda aos requisitos de negócio, ofereça boa experiência ao usuário e funcione com segurança e estabilidade. Ele envolve a execução planejada de um programa para identificar erros, falhas ou comportamentos inesperados antes do lançamento.</p>
->>>>>>> 6b3726d71ce779c4e37cec36db389d09646331b8
         </section>
 
         <section id="o-que-e">
@@ -197,7 +197,6 @@
             </div>
         </section>
 
-
         <section id="falhas">
             <p class="eyebrow">// registro de incidentes</p>
             <h2 class="subtitulo-principal">Sistemas que falharam por testes insuficientes</h2>
@@ -278,55 +277,45 @@
 
             <div id="quiz-container" class="quiz-container" style="display: none;"></div>
             <div id="resultado-container" class="resultado-container" style="display: none;"></div>
-
-            
         </section>
+
         <section id="caca-palavras" class="caca-palavras-section">
-    <p class="eyebrow">// desafio interativo</p>
-    <h2 class="subtitulo-principal">Caça-Palavras de QA</h2>
-    <p class="paragrafo-principal">Encontre os 10 termos fundamentais sobre Teste de Software escondidos na grade!</p>
+            <p class="eyebrow">// desafio interativo</p>
+            <h2 class="subtitulo-principal">Caça-Palavras de QA</h2>
+            <p class="paragrafo-principal">Encontre os 10 termos fundamentais sobre Teste de Software escondidos na grade!</p>
 
-    <div class="caca-palavras-container">
-        <!-- Lista de palavras para procurar -->
-        <div class="palavras-lista">
-            <h3>Palavras para encontrar:</h3>
-            <ul id="lista-palavras"></ul>
-        </div>
+            <div class="caca-palavras-container">
+                <div class="palavras-lista">
+                    <h3>Palavras para encontrar:</h3>
+                    <ul id="lista-palavras"></ul>
 
-        <!-- Grade interativa do caça-palavras -->
-        <div class="grade-wrapper">
-            <div id="grid-caca-palavras" class="grid-caca-palavras"></div>
-        </div>
-    </div>
-</section>
+                    <button class="botao-quiz" onclick="reembaralharCacaPalavras()" style="margin-top: 15px; width: 100%;">
+                        $ reembaralhar_grid()
+                    </button>
+                </div>
 
+                <div class="grade-wrapper">
+                    <div id="grid-caca-palavras" class="grid-caca-palavras"></div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
-            </div>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
         </div>
+    </div>
 
     <footer>
         <p class="paragrafo-rodape">&copy; Conhecendo sobre Teste de Software — Todos os direitos reservados.</p>
     </footer>
 
-    <script src="./assets/js/vlibras.js"></script>
-
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-
     <script>
-
-        new window.VLibras.Widget(
-            "https://vlibras.gov.br/app"
-        );
-
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
     </script>
-
     <script src="./assets/script.js"></script>
 </body>
 </html>
