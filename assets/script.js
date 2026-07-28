@@ -1,6 +1,3 @@
-// ==========================================
-// FUNÇÕES DE HASH / CRIPTOGRAFIA (UTF-8 SAFE)
-// ==========================================
 function gerarHash(texto) {
     const bytes = new TextEncoder().encode(texto);
     let binary = '';
@@ -14,9 +11,6 @@ function descriptografar(hash) {
     return new TextDecoder().decode(bytes);
 }
 
-// ==========================================
-// BASE DE DADOS DO QUIZ
-// ==========================================
 const quiz = [
     {
         pergunta: "Qual é o principal objetivo do teste de software?",
@@ -120,9 +114,6 @@ const quiz = [
     }
 ];
 
-// ==========================================
-// LÓGICA DO QUIZ INTERATIVO
-// ==========================================
 let perguntaAtual = 0;
 let pontos = 0;
 let respostasDoUsuario = [];
@@ -241,9 +232,6 @@ function exibirResultado(pontosObtidos, total) {
     setTimeout(() => resultadoContainer.classList.add('visivel'), 50);
 }
 
-// ==========================================
-// CAÇA-PALAVRAS INTERATIVO (GRID EXPANDIDO 15x12)
-// ==========================================
 const bancoDePalavras = [
     "SOFTWARE", "TESTE", "DEFEITO", "FALHA", "UNITARIO",
     "CYPRESS", "POSTMAN", "JMETER", "JIRA", "REGRESSAO",
@@ -254,7 +242,7 @@ const bancoDePalavras = [
 
 let palavrasCaca = [];
 const LINHAS_GRID = 12;
-const COLUNAS_GRID = 15; // Ajustado para preencher a largura no desktop
+const COLUNAS_GRID = 15;
 let matrizGrid = [];
 let letrasSelecionadas = [];
 let posicoesPalavras = {};
@@ -273,10 +261,8 @@ function criarCacaPalavras() {
         return;
     }
 
-    // Sorteia 15 palavras
     palavrasCaca = sortearPalavras(15);
 
-    // Cria matriz 12 x 15
     matrizGrid = Array(LINHAS_GRID).fill(null).map(() => Array(COLUNAS_GRID).fill(''));
     posicoesPalavras = {};
     letrasSelecionadas = [];
@@ -298,7 +284,6 @@ function criarCacaPalavras() {
 
     gridContainer.innerHTML = '';
 
-    // Aplica o grid de 15 colunas diretamente
     gridContainer.style.display = 'grid';
     gridContainer.style.gridTemplateColumns = `repeat(${COLUNAS_GRID}, 1fr)`;
     gridContainer.style.width = '100%';
@@ -402,11 +387,7 @@ function verificarPalavraFormada() {
     }
 }
 
-// ==========================================
-// INICIALIZADORES E EVENTOS (DOM LOADED)
-// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
-    // Menu Hamburguer Mobile
     const menuToggle = document.getElementById('menuToggle');
     const menuNavegacao = document.getElementById('menuNavegacao');
 
@@ -424,7 +405,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Animações de Scroll
     const observador = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -437,11 +417,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const elementosParaAnimar = document.querySelectorAll('section, .lista-detalhes li');
     elementosParaAnimar.forEach(el => observador.observe(el));
 
-    // Inicialização do Caça-Palavras
     criarCacaPalavras();
 });
 
-// Gerenciamento do Tema Escuro/Claro
 (function () {
     const root = document.documentElement;
     const switchInput = document.getElementById('themeSwitch');

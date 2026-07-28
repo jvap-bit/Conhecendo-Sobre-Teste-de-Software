@@ -4,7 +4,6 @@
   --bg-surface: #071326;
   --panel-bg: rgba(10, 25, 47, 0.65);
 
-  /* Accent & Neon Colors */
   --cyan-neon: #00f0ff;
   --blue-electric: #0077ff;
   --blue-accent: #1e3a8a;
@@ -1150,11 +1149,6 @@ section.visivel,
   color: var(--cyan-neon);
 }
 
-/* ==========================================
-   QUIZ (TEMA CLARO)
-   ========================================== */
-
-/* Botão principal do Quiz */
 [data-theme="light"] .botao-quiz {
   color: #ffffff;
   box-shadow: 0 4px 15px rgba(0, 119, 255, 0.3);
@@ -1165,14 +1159,12 @@ section.visivel,
   box-shadow: 0 6px 20px rgba(0, 119, 255, 0.5);
 }
 
-/* Containers de Perguntas e Resultado */
 [data-theme="light"] .quiz-container {
   background: var(--panel-bg);
   border-color: var(--glass-border);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-/* Card de cada pergunta */
 [data-theme="light"] .pergunta {
   background: var(--bg-surface);
   border-color: rgba(0, 119, 255, 0.15);
@@ -1184,10 +1176,9 @@ section.visivel,
 }
 
 [data-theme="light"] .pergunta h3 {
-  color: var(--white); /* var(--white) é o tom escuro no tema claro */
+  color: var(--white);
 }
 
-/* Opções de resposta (Labels) */
 [data-theme="light"] .pergunta label {
   background: rgba(0, 119, 255, 0.03);
   border-color: rgba(0, 119, 255, 0.12);
@@ -1200,7 +1191,6 @@ section.visivel,
   color: var(--blue-electric);
 }
 
-/* Opção Selecionada (Radio Checked) */
 [data-theme="light"] .pergunta label:has(input[type="radio"]:checked) {
   background: rgba(0, 119, 255, 0.12);
   border-color: var(--cyan-neon);
@@ -1209,7 +1199,6 @@ section.visivel,
   box-shadow: 0 2px 10px rgba(0, 119, 255, 0.15);
 }
 
-/* Container do Resultado Final */
 [data-theme="light"] .resultado-container {
   background: var(--bg-surface);
   border-color: var(--cyan-neon);
@@ -1245,7 +1234,6 @@ section.visivel,
     transition: all 0.3s ease;
 }
 
-/* Transição do Ícone do Hamburguer para "X" */
 .menu-toggle.active span:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
 }
@@ -1256,7 +1244,6 @@ section.visivel,
     transform: translateY(-9px) rotate(-45deg);
 }
 
-/* Ajuste Geral para Imagens/Caixas */
 * {
     box-sizing: border-box;
 }
@@ -1265,7 +1252,6 @@ img, iframe {
     max-width: 100%;
 }
 
-/* Adaptando Caça-Palavras em Mobile */
 .grade-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -1277,7 +1263,6 @@ img, iframe {
     min-width: 320px;
 }
 
-/* Breakpoint: Tablets e Dispositivos Móveis (<= 992px) */
 @media (max-width: 992px) {
     .hero-grid {
         grid-template-columns: 1fr !important;
@@ -1300,14 +1285,11 @@ img, iframe {
     }
 }
 
-/* Breakpoint: Telas Menores e Celulares (<= 768px) */
 @media (max-width: 768px) {
-    /* Exibir Botão Hamburguer */
     .menu-toggle {
         display: flex;
     }
 
-    /* Ajustar Menu para Overlay Off-Canvas Mobile */
     .cabecalho {
         position: relative;
         justify-content: space-between;
@@ -1335,13 +1317,11 @@ img, iframe {
         right: 0;
     }
 
-    /* Esconder Switch do tema no menu e alinhar ao topo */
     .theme-switch {
         margin-left: auto;
         margin-right: 15px;
     }
 
-    /* Grids Adaptáveis */
     .stats-grid,
     .card-grid,
     .tool-groups {
@@ -1357,7 +1337,6 @@ img, iframe {
         grid-template-columns: 1fr !important;
     }
 
-    /* Ajuste de Fontes e Espaçamentos */
     .titulo-principal {
         font-size: 2rem !important;
     }
