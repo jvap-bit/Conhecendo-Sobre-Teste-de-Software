@@ -101,77 +101,136 @@ const quiz = [
     }
 ];
 
+let perguntaAtual = 0;
+let pontos = 0;
+let respostasDoUsuario = [];
+
 function iniciarQuiz() {
+    perguntaAtual = 0;
+    pontos = 0;
+    respostasDoUsuario = [];
+
     const quizContainer = document.getElementById('quiz-container');
     const resultadoContainer = document.getElementById('resultado-container');
     
     quizContainer.style.display = 'block';
     resultadoContainer.style.display = 'none';
 
-    quizContainer.innerHTML = '';
-    resultadoContainer.innerHTML = '';
+    quizContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-    // Renderiza cada pergunta com numeração dinâmica
-    quiz.forEach((pergunta, index) => {
-        const perguntaDiv = document.createElement('div');
-        perguntaDiv.classList.add('pergunta');
-        perguntaDiv.innerHTML = `
-            <h3>${index + 1}. ${pergunta.pergunta}</h3>
-            <ul style="list-style: none; padding: 0;">
-                ${pergunta.opcoes.map((opcao) => `
-                    <li>
-                        <label>
-                            <input type="radio" name="resposta-${index}" value="${opcao}"> 
-                            ${opcao}
-                        </label>
-                    </li>
-                `).join('')}
-            </ul>
-        `;
-        quizContainer.appendChild(perguntaDiv);
-    });
-
-    const botaoEnviar = document.createElement('button');
-    botaoEnviar.innerText = 'Enviar Respostas';
-    botaoEnviar.classList.add('botao-quiz');
-    botaoEnviar.onclick = calcularResultado;
-    quizContainer.appendChild(botaoEnviar);
+    mostrarPergunta();
 }
 
-function calcularResultado() {
-    let pontos = 0;
-    let todasRespondidas = true;
+function mostrarPergunta() {
+    const quizContainer = document.getElementById('quiz-container');
+    quizContainer.innerHTML = '';
 
-    quiz.forEach((pergunta, index) => {
-        const opcaoSelecionada = document.querySelector(`input[name="resposta-${index}"]:checked`);
+    const dadosPergunta = quiz[perguntaAtual];
 
-        if (!opcaoSelecionada) {
-            todasRespondidas = false;
-        } else if (opcaoSelecionada.value === pergunta.respostaCorreta) {
-            pontos++;
-        }
-    });
+    const perguntaDiv = document.createElement('div');
+    perguntaDiv.classList.add('pergunta');
+    perguntaDiv.innerHTML = `
+        <h3>${perguntaAtual + 1} de ${quiz.length}. ${dadosPergunta.pergunta}</h3>
+        <ul style="list-style: none; padding: 0;">
+            ${dadosPergunta.opcoes.map((opcao) => `
+                <li style="margin-bottom: 10px;">
+                    <label style="cursor: pointer; display: block; padding: 10px; border-radius: 6px; background: rgba(255,255,255,0.05); transition: background 0.2s;">
+                        <input type="radio" name="resposta" value="${opcao}" onchange="selecionarResposta(this.value)"> 
+                        ${opcao}
+                    </label>
+                </li>
+            `).join('')}
+        </ul>
+    `;
 
-    if (!todasRespondidas) {
-        alert("Por favor, responda a todas as perguntas antes de enviar!");
-        return;
+    quizContainer.appendChild(perguntaDiv);
+
+    setTimeout(() => {
+        perguntaDiv.classList.add('visivel');
+    }, 50);
+}
+
+function selecionarResposta(opcaoEscolhida) {
+    // Guarda a resposta do usuário
+    respostasDoUsuario.push(opcaoEscolhida);
+
+    if (opcaoEscolhida === quiz[perguntaAtual].respostaCorreta) {
+        pontos++;
     }
 
-    exibirResultado(pontos, quiz.length);
+    setTimeout(() => {
+        perguntaAtual++;
+
+        if (perguntaAtual < quiz.length) {
+            mostrarPergunta();
+        } else {
+            exibirResultado(pontos, quiz.length);
+        }
+    }, 300);
 }
 
-function exibirResultado(pontos, total) {
+function exibirResultado(pontosObtidos, total) {
     const quizContainer = document.getElementById('quiz-container');
     const resultadoContainer = document.getElementById('resultado-container');
 
     quizContainer.style.display = 'none';
     resultadoContainer.style.display = 'block';
 
-    const percentual = Math.round((pontos / total) * 100);
+    const percentual = Math.round((pontosObtidos / total) * 100);
+
+    // Monta o gabarito detalhado
+    let gabaritoHTML = quiz.map((item, index) => {
+        const respostaUsuario = respostasDoUsuario[index];
+        const acertou = respostaUsuario === item.respostaCorreta;
+
+        return `
+            <div style="margin-bottom: 20px; padding: 15px; border-radius: 8px; background: rgba(255,255,255,0.03); border-left: 5px solid ${acertou ? '#2ed573' : '#ff4757'}; text-align: left;">
+                <p style="font-weight: bold; margin-bottom: 8px;">${index + 1}. ${item.pergunta}</p>
+                <p style="margin: 4px 0; color: ${acertou ? '#2ed573' : '#ff4757'};">
+                    <strong>Sua resposta:</strong> ${respostaUsuario} ${acertou ? '✓ (Correto)' : '✗ (Incorreto)'}
+                </p>
+                ${!acertou ? `
+                    <p style="margin: 4px 0; color: #2ed573;">
+                        <strong>Resposta correta:</strong> ${item.respostaCorreta}
+                    </p>
+                ` : ''}
+            </div>
+        `;
+    }).join('');
 
     resultadoContainer.innerHTML = `
         <h2>Resultado do Quiz</h2>
-        <p class="paragrafo-principal">Você acertou <strong>${pontos}</strong> de <strong>${total}</strong> perguntas (${percentual}% de aproveitamento).</p>
+        <p class="paragrafo-principal">Você acertou <strong>${pontosObtidos}</strong> de <strong>${total}</strong> perguntas (${percentual}% de aproveitamento).</p>
+        
+        <div style="margin-top: 25px; margin-bottom: 25px;">
+            <h3>Revisão das Questões</h3>
+            ${gabaritoHTML}
+        </div>
+
         <button class="botao-quiz" onclick="iniciarQuiz()">Tentar Novamente</button>
     `;
+
+    resultadoContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+    resultadoContainer.classList.remove('visivel');
+    setTimeout(() => resultadoContainer.classList.add('visivel'), 50);
 }
+
+// =======================================================
+// ANIMAÇÃO DE APARECIMENTO AO ROLAR A PÁGINA (SCROLL REVEAL)
+// =======================================================
+document.addEventListener("DOMContentLoaded", () => {
+    const observador = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visivel');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    const elementosParaAnimar = document.querySelectorAll('section, .lista-detalhes li');
+    elementosParaAnimar.forEach(el => observador.observe(el));
+});
